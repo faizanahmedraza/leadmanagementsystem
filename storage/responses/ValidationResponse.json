@@ -1,0 +1,9 @@
+{
+    "data": {},
+    "error": {
+        "code": "Error code",
+        "message": "Error Message."
+    },
+    "success": false,
+    "message": "Operation failed"
+}

@@ -1,0 +1,117 @@
+{
+    "data": {
+        "collections": [
+            {
+                "id": 21,
+                "name": "leads_comments",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 20,
+                "name": "leads_assign",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 19,
+                "name": "leads_toggle_status",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 18,
+                "name": "leads_delete",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 17,
+                "name": "leads_update",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 16,
+                "name": "leads_create",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 15,
+                "name": "leads_read",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 14,
+                "name": "leads_all",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 13,
+                "name": "permissions_list",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 12,
+                "name": "roles_delete",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 11,
+                "name": "roles_update",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 10,
+                "name": "roles_create",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 9,
+                "name": "roles_read",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 8,
+                "name": "roles_all",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 7,
+                "name": "users_toggle_status",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 6,
+                "name": "user_management_delete",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 5,
+                "name": "user_management_update",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 4,
+                "name": "user_management_create",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 3,
+                "name": "user_management_read",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 2,
+                "name": "user_management_all",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            },
+            {
+                "id": 1,
+                "name": "access_all",
+                "created_at": "2022-08-06T12:15:18.000000Z"
+            }
+        ],
+        "permissions": [
+            "access_all"
+        ]
+    },
+    "error": {},
+    "success": true,
+    "message": "Operation successful"
+}

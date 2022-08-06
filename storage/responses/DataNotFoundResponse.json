@@ -1,0 +1,9 @@
+{
+    "data": [],
+    "error": {
+        "code": 404,
+        "message": "Data trying to access does not exists."
+    },
+    "success": false,
+    "message": "Operation failed"
+}

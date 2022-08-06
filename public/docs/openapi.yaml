@@ -1,0 +1,3090 @@
+openapi: 3.0.3
+info:
+  title: Lumen
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /v1/logout:
+    delete:
+      summary: "Logout\nHit api and session get out"
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'string required'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error: null
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: string
+                    example: null
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: {  }
+                  error:
+                    code: 'Error code'
+                    message: 'Error Message.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: object
+                    example: {  }
+                  error:
+                    type: object
+                    example:
+                      code: 'Error code'
+                      message: 'Error Message.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - Authentication
+  /v1/password:
+    put:
+      summary: "Change Password\nchange password request of user"
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error: null
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: string
+                    example: null
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: {  }
+                  error:
+                    code: 'Error code'
+                    message: 'Error Message.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: object
+                    example: {  }
+                  error:
+                    type: object
+                    example:
+                      code: 'Error code'
+                      message: 'Error Message.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: String
+                  description: abcd1234
+                  example: abcd1234
+                password_confirmation:
+                  type: String
+                  description: abcd1234
+                  example: abcd1234
+              required:
+                - password
+                - password_confirmation
+  /v1/auth/login:
+    post:
+      summary: "Access Token Or Login\nThis function is useful for login, to return access token for users."
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Client-ID
+          description: ''
+          example: 'string required'
+          schema:
+            type: string
+        -
+          in: header
+          name: Client-Secret
+          description: ''
+          example: 'string required'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    authentication:
+                      access_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzUyMjViZDVjYzU2Njk5Y2QxOTg5Y2JlOTJlOGQ0MjdiNmU3YTExNzk1NDRjYmU3ZjI3NmY1NzYyOWI0Mzc1ZjdhMmNjNDA1YmQxMWZjZjAiLCJpYXQiOjE2NTk3OTAzNDkuODAwNDQ2LCJuYmYiOjE2NTk3OTAzNDkuODAwNDUsImV4cCI6MTY5MTMyNjM0OS43ODExNjQsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.ASFjs9O5GuPS3KU8UCybiUe2NpfOBvXKXmMV0zk1QS1qAD_GPl6TUKpmpors_nW8WOZsMIJ7xUNctmcyqS71AqgOvcKxEOWAc2djHaaTD8l9SBhidm4cIwuZM6aEN1iDVL8VGxkcBhG6kJyj1_MHbuQPcnRRfEqhqSzp0PPSIRIpfTfiApvax9QUooCg9H3cXk3h3qRxZu3aqP7A5_STakqcv4lIeqeBaMToOgXCvVZGc_gG8K5bqAUgOi5l3oVc7R56-b6ebIKgUzln4Q1VagdH4xPedGlm0_GVrBVKBnMbgAmVQOBQo8ohiidvOu6Q3JRmMGuna92gzlBLL5Kk_e-fI4mlWnhVWoz2-U8KJjvSGDFPYHlgBvqBYAZbWxZsRbKShecRcxqt89tRFy8XwKwP2UBvp-CDsof3j-FpJKa0Uhf9fc5u8R0o1D1LAmUJKUE1dyr3Unta6gkAvJW8Wnk_jPnIYn7hezmglGwn45NNagJNJZk8s0ftk7Lr2CT8H4CszYs--I_2YOtSykvGw1tr3f4-n55KaEXUNMukybmALLuPxvFu7av5eheNYnvwKa6-x7Xx6-qtWA0ZpOFsVfEA5OHUMN0tknY6wOqMfEwJ9F-on3xomCIE8l9TQHL5VWeKD8HNvGUWS9xN-6UQ379Xg7OLIAtiTAZ9Bb44Izo
+                      token_type: Bearer
+                      expiry: '2022-08-16 12:52:29'
+                      user:
+                        id: 1
+                        first_name: 'Faizan Ahmed'
+                        last_name: Raza
+                        email: faizan.raza@saasfa.com
+                        last_logged_in: '2022-08-06T12:52:29.816544Z'
+                        image: null
+                        status: active
+                        roles:
+                          -
+                            id: 1
+                            name: Admin
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                            permissions:
+                              -
+                                id: 1
+                                name: access_all
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                        permissions: []
+                  error: {  }
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      authentication:
+                        access_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzUyMjViZDVjYzU2Njk5Y2QxOTg5Y2JlOTJlOGQ0MjdiNmU3YTExNzk1NDRjYmU3ZjI3NmY1NzYyOWI0Mzc1ZjdhMmNjNDA1YmQxMWZjZjAiLCJpYXQiOjE2NTk3OTAzNDkuODAwNDQ2LCJuYmYiOjE2NTk3OTAzNDkuODAwNDUsImV4cCI6MTY5MTMyNjM0OS43ODExNjQsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.ASFjs9O5GuPS3KU8UCybiUe2NpfOBvXKXmMV0zk1QS1qAD_GPl6TUKpmpors_nW8WOZsMIJ7xUNctmcyqS71AqgOvcKxEOWAc2djHaaTD8l9SBhidm4cIwuZM6aEN1iDVL8VGxkcBhG6kJyj1_MHbuQPcnRRfEqhqSzp0PPSIRIpfTfiApvax9QUooCg9H3cXk3h3qRxZu3aqP7A5_STakqcv4lIeqeBaMToOgXCvVZGc_gG8K5bqAUgOi5l3oVc7R56-b6ebIKgUzln4Q1VagdH4xPedGlm0_GVrBVKBnMbgAmVQOBQo8ohiidvOu6Q3JRmMGuna92gzlBLL5Kk_e-fI4mlWnhVWoz2-U8KJjvSGDFPYHlgBvqBYAZbWxZsRbKShecRcxqt89tRFy8XwKwP2UBvp-CDsof3j-FpJKa0Uhf9fc5u8R0o1D1LAmUJKUE1dyr3Unta6gkAvJW8Wnk_jPnIYn7hezmglGwn45NNagJNJZk8s0ftk7Lr2CT8H4CszYs--I_2YOtSykvGw1tr3f4-n55KaEXUNMukybmALLuPxvFu7av5eheNYnvwKa6-x7Xx6-qtWA0ZpOFsVfEA5OHUMN0tknY6wOqMfEwJ9F-on3xomCIE8l9TQHL5VWeKD8HNvGUWS9xN-6UQ379Xg7OLIAtiTAZ9Bb44Izo
+                        token_type: Bearer
+                        expiry: '2022-08-16 12:52:29'
+                        user:
+                          id: 1
+                          first_name: 'Faizan Ahmed'
+                          last_name: Raza
+                          email: faizan.raza@saasfa.com
+                          last_logged_in: '2022-08-06T12:52:29.816544Z'
+                          image: null
+                          status: active
+                          roles:
+                            -
+                              id: 1
+                              name: Admin
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                              permissions:
+                                -
+                                  id: 1
+                                  name: access_all
+                                  created_at: '2022-08-06T12:15:18.000000Z'
+                          permissions: []
+                  error:
+                    type: object
+                    example: {  }
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: {  }
+                  error:
+                    code: 'Error code'
+                    message: 'Error Message.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: object
+                    example: {  }
+                  error:
+                    type: object
+                    example:
+                      code: 'Error code'
+                      message: 'Error Message.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: email
+                  description: 'The username of user.'
+                  example: admin@my-app.com
+                password:
+                  type: string
+                  description: 'The password of user.'
+                  example: 'Abc*123*'
+              required:
+                - email
+                - password
+      security: []
+  '/v1/leads/{id}':
+    delete:
+      summary: 'Delete Lead'
+      description: 'This api delete lead'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error: null
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: string
+                    example: null
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error:
+                    code: 401
+                    message: 'Unaothorized access! User does not have access.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: object
+                    example:
+                      code: 401
+                      message: 'Unaothorized access! User does not have access.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Leads Management'
+    put:
+      summary: 'Update Lead Details.'
+      description: 'This api update lead details'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: {  }
+                  error:
+                    code: 'Error code'
+                    message: 'Error Message.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: object
+                    example: {  }
+                  error:
+                    type: object
+                    example:
+                      code: 'Error code'
+                      message: 'Error Message.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Leads Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: String
+                  description: ''
+                  example: sunt
+                description:
+                  type: String
+                  description: ''
+                  example: qui
+                phone:
+                  type: email
+                  description: ''
+                  example: ullam
+                email:
+                  type: String
+                  description: ''
+                  example: adipisci
+                address:
+                  type: String
+                  description: ''
+                  example: qui
+                status:
+                  type: String
+                  description: 'ex: pending,active,completed'
+                  example: sint
+              required:
+                - name
+                - status
+    get:
+      summary: "Show Lead Details\nThis api show the lead details."
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    lead:
+                      id: 1
+                      name: mehmood
+                      description: 'khan decription'
+                      email: clientabc@gmail.com
+                      phone: '+923325674517       '
+                      address: clientabc@gmail.com
+                      status: active
+                      created_at: '2022-08-06T12:16:25.000000Z'
+                      users:
+                        -
+                          id: 2
+                          first_name: usman
+                          last_name: khan
+                          email: faizanahmedraza35@gmail.com
+                          last_logged_in: null
+                          image: null
+                          status: active
+                      comments:
+                        -
+                          id: 1
+                          description: 'my decription'
+                          created_at: '2022-08-06T12:17:14.000000Z'
+                    permissions:
+                      - access_all
+                  error: {  }
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      lead:
+                        id: 1
+                        name: mehmood
+                        description: 'khan decription'
+                        email: clientabc@gmail.com
+                        phone: '+923325674517       '
+                        address: clientabc@gmail.com
+                        status: active
+                        created_at: '2022-08-06T12:16:25.000000Z'
+                        users:
+                          -
+                            id: 2
+                            first_name: usman
+                            last_name: khan
+                            email: faizanahmedraza35@gmail.com
+                            last_logged_in: null
+                            image: null
+                            status: active
+                        comments:
+                          -
+                            id: 1
+                            description: 'my decription'
+                            created_at: '2022-08-06T12:17:14.000000Z'
+                      permissions:
+                        - access_all
+                  error:
+                    type: object
+                    example: {  }
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: {  }
+                  error:
+                    code: 'Error code'
+                    message: 'Error Message.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: object
+                    example: {  }
+                  error:
+                    type: object
+                    example:
+                      code: 'Error code'
+                      message: 'Error Message.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Leads Management'
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: est
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: lead_id
+        description: Integer
+        example: est
+        required: true
+        schema:
+          type: string
+  '/v1/leads/status/{id}':
+    put:
+      summary: "Toggle Lead Status\nThis api update the leads status to active or completed"
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error: null
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: string
+                    example: null
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error:
+                    code: 401
+                    message: 'Unaothorized access! User does not have access.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: object
+                    example:
+                      code: 401
+                      message: 'Unaothorized access! User does not have access.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Leads Management'
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: corporis
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: lead_id
+        description: ''
+        example: 9
+        required: true
+        schema:
+          type: integer
+  /v1/leads/assign:
+    post:
+      summary: "Assign Leads to User\nThis api update the leads status to active or deactive\nother then customers."
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error: null
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: string
+                    example: null
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+      tags:
+        - 'Leads Management'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                leads:
+                  type: array
+                  description: 'integer required'
+                  example:
+                    - enim
+                  items:
+                    type: string
+  /v1/leads/comments:
+    post:
+      summary: "Store Comments\nThis api for comments on leads"
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error: null
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: string
+                    example: null
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+      tags:
+        - 'Leads Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lead_id:
+                  type: Integer
+                  description: ''
+                  example: soluta
+                description:
+                  type: String
+                  description: ''
+                  example: asperiores
+              required:
+                - lead_id
+                - description
+  '/v1/leads/comments/{id}':
+    get:
+      summary: "Get Lead Comments\nThis api for comments on leads"
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error: null
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: string
+                    example: null
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+      tags:
+        - 'Leads Management'
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: nihil
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: lead_id
+        description: ''
+        example: 10
+        required: true
+        schema:
+          type: integer
+  /v1/leads:
+    get:
+      summary: "Get Leads\nThis will return leads list."
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    leads:
+                      -
+                        id: 1
+                        name: mehmood
+                        description: 'khan decription'
+                        email: clientabc@gmail.com
+                        phone: '+923325674517       '
+                        address: clientabc@gmail.com
+                        status: active
+                        created_at: '2022-08-06T12:16:25.000000Z'
+                        assigned_users_count: 1
+                    pagination:
+                      total: 1
+                      count: 1
+                      per_page: 20
+                      current_page: 1
+                      total_pages: 1
+                    permissions:
+                      - access_all
+                  error: {  }
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      leads:
+                        -
+                          id: 1
+                          name: mehmood
+                          description: 'khan decription'
+                          email: clientabc@gmail.com
+                          phone: '+923325674517       '
+                          address: clientabc@gmail.com
+                          status: active
+                          created_at: '2022-08-06T12:16:25.000000Z'
+                          assigned_users_count: 1
+                      pagination:
+                        total: 1
+                        count: 1
+                        per_page: 20
+                        current_page: 1
+                        total_pages: 1
+                      permissions:
+                        - access_all
+                  error:
+                    type: object
+                    example: {  }
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: {  }
+                  error:
+                    code: 'Error code'
+                    message: 'Error Message.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: object
+                    example: {  }
+                  error:
+                    type: object
+                    example:
+                      code: 'Error code'
+                      message: 'Error Message.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Leads Management'
+    post:
+      summary: "Create Leads\nThis api create new lead."
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    lead:
+                      id: 1
+                      name: mehmood
+                      description: 'khan decription'
+                      email: clientabc@gmail.com
+                      phone: '+923325674517       '
+                      address: clientabc@gmail.com
+                      status: active
+                      created_at: '2022-08-06T12:16:25.000000Z'
+                      users:
+                        -
+                          id: 2
+                          first_name: usman
+                          last_name: khan
+                          email: faizanahmedraza35@gmail.com
+                          last_logged_in: null
+                          image: null
+                          status: active
+                      comments:
+                        -
+                          id: 1
+                          description: 'my decription'
+                          created_at: '2022-08-06T12:17:14.000000Z'
+                    permissions:
+                      - access_all
+                  error: {  }
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      lead:
+                        id: 1
+                        name: mehmood
+                        description: 'khan decription'
+                        email: clientabc@gmail.com
+                        phone: '+923325674517       '
+                        address: clientabc@gmail.com
+                        status: active
+                        created_at: '2022-08-06T12:16:25.000000Z'
+                        users:
+                          -
+                            id: 2
+                            first_name: usman
+                            last_name: khan
+                            email: faizanahmedraza35@gmail.com
+                            last_logged_in: null
+                            image: null
+                            status: active
+                        comments:
+                          -
+                            id: 1
+                            description: 'my decription'
+                            created_at: '2022-08-06T12:17:14.000000Z'
+                      permissions:
+                        - access_all
+                  error:
+                    type: object
+                    example: {  }
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: {  }
+                  error:
+                    code: 'Error code'
+                    message: 'Error Message.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: object
+                    example: {  }
+                  error:
+                    type: object
+                    example:
+                      code: 'Error code'
+                      message: 'Error Message.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Leads Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: String
+                  description: ''
+                  example: id
+                description:
+                  type: String
+                  description: ''
+                  example: quibusdam
+                phone:
+                  type: email
+                  description: ''
+                  example: qui
+                email:
+                  type: String
+                  description: ''
+                  example: dolorum
+                address:
+                  type: String
+                  description: ''
+                  example: et
+                status:
+                  type: string
+                  description: 'ex: pending,active,completed'
+                  example: consequuntur
+              required:
+                - name
+    parameters:
+      -
+        in: path
+        name: leads
+        description: 'Optional parameter. 1,2,3,4'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: optio
+      -
+        in: path
+        name: name
+        description: 'Optional parameter. ex: abc'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: est
+      -
+        in: path
+        name: status
+        description: 'Optional parameter. ex: pending,active,completed'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: quia
+      -
+        in: path
+        name: order_by
+        description: 'Optional parameter. ex: asc/desc'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: est
+      -
+        in: path
+        name: from_date
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: Y-m-d
+      -
+        in: path
+        name: to_date
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: Y-m-d
+      -
+        in: path
+        name: pagination
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: boolean
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: true
+      -
+        in: path
+        name: page_limit
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 16
+      -
+        in: path
+        name: page
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 11
+  /v1/permissions:
+    get:
+      summary: "Permission List\nThis api return the collection of all Permissions created."
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'String required Example: Bearer TOKEN'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    collections:
+                      -
+                        id: 21
+                        name: leads_comments
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 20
+                        name: leads_assign
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 19
+                        name: leads_toggle_status
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 18
+                        name: leads_delete
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 17
+                        name: leads_update
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 16
+                        name: leads_create
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 15
+                        name: leads_read
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 14
+                        name: leads_all
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 13
+                        name: permissions_list
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 12
+                        name: roles_delete
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 11
+                        name: roles_update
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 10
+                        name: roles_create
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 9
+                        name: roles_read
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 8
+                        name: roles_all
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 7
+                        name: users_toggle_status
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 6
+                        name: user_management_delete
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 5
+                        name: user_management_update
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 4
+                        name: user_management_create
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 3
+                        name: user_management_read
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 2
+                        name: user_management_all
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 1
+                        name: access_all
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                    permissions:
+                      - access_all
+                  error: {  }
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      collections:
+                        -
+                          id: 21
+                          name: leads_comments
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 20
+                          name: leads_assign
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 19
+                          name: leads_toggle_status
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 18
+                          name: leads_delete
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 17
+                          name: leads_update
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 16
+                          name: leads_create
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 15
+                          name: leads_read
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 14
+                          name: leads_all
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 13
+                          name: permissions_list
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 12
+                          name: roles_delete
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 11
+                          name: roles_update
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 10
+                          name: roles_create
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 9
+                          name: roles_read
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 8
+                          name: roles_all
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 7
+                          name: users_toggle_status
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 6
+                          name: user_management_delete
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 5
+                          name: user_management_update
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 4
+                          name: user_management_create
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 3
+                          name: user_management_read
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 2
+                          name: user_management_all
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 1
+                          name: access_all
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                      permissions:
+                        - access_all
+                  error:
+                    type: object
+                    example: {  }
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+      tags:
+        - 'Permissions Api'
+  /v1/roles:
+    get:
+      summary: "Roles List\nThis api return the collection of all Roles created."
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'String required Example: Bearer TOKEN'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    roles:
+                      -
+                        id: 3
+                        name: SalesPerson
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                        permissions:
+                          -
+                            id: 14
+                            name: leads_all
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                          -
+                            id: 15
+                            name: leads_read
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                          -
+                            id: 21
+                            name: leads_comments
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 2
+                        name: Manager
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                        permissions:
+                          -
+                            id: 14
+                            name: leads_all
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                          -
+                            id: 15
+                            name: leads_read
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                          -
+                            id: 16
+                            name: leads_create
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                          -
+                            id: 17
+                            name: leads_update
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                          -
+                            id: 18
+                            name: leads_delete
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                          -
+                            id: 19
+                            name: leads_toggle_status
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                          -
+                            id: 20
+                            name: leads_assign
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                          -
+                            id: 21
+                            name: leads_comments
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                      -
+                        id: 1
+                        name: Admin
+                        created_at: '2022-08-06T12:15:18.000000Z'
+                        permissions:
+                          -
+                            id: 1
+                            name: access_all
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                    pagination:
+                      total: 3
+                      count: 3
+                      per_page: 20
+                      current_page: 1
+                      total_pages: 1
+                    permissions:
+                      - access_all
+                  error: {  }
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      roles:
+                        -
+                          id: 3
+                          name: SalesPerson
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                          permissions:
+                            -
+                              id: 14
+                              name: leads_all
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 15
+                              name: leads_read
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 21
+                              name: leads_comments
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 2
+                          name: Manager
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                          permissions:
+                            -
+                              id: 14
+                              name: leads_all
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 15
+                              name: leads_read
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 16
+                              name: leads_create
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 17
+                              name: leads_update
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 18
+                              name: leads_delete
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 19
+                              name: leads_toggle_status
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 20
+                              name: leads_assign
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 21
+                              name: leads_comments
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                        -
+                          id: 1
+                          name: Admin
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                          permissions:
+                            -
+                              id: 1
+                              name: access_all
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                      pagination:
+                        total: 3
+                        count: 3
+                        per_page: 20
+                        current_page: 1
+                        total_pages: 1
+                      permissions:
+                        - access_all
+                  error:
+                    type: object
+                    example: {  }
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+      tags:
+        - 'Roles Management'
+    parameters:
+      -
+        in: path
+        name: order_by
+        description: 'Optional parameter. ex: asc/desc'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: voluptas
+      -
+        in: path
+        name: from_date
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: Y-m-d
+      -
+        in: path
+        name: to_date
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: Y-m-d
+      -
+        in: path
+        name: pagination
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: boolean
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: true
+      -
+        in: path
+        name: page_limit
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 4
+      -
+        in: path
+        name: page
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 12
+  '/v1/users/status/{id}':
+    put:
+      summary: "Toggle User Status\nThis api update the users status to active or deactive\nother then customers."
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error: null
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: string
+                    example: null
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error:
+                    code: 401
+                    message: 'Unaothorized access! User does not have access.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: object
+                    example:
+                      code: 401
+                      message: 'Unaothorized access! User does not have access.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Users Management'
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: voluptatem
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: user_id
+        description: ''
+        example: 12
+        required: true
+        schema:
+          type: integer
+  '/v1/users/{id}':
+    delete:
+      summary: 'Delete User'
+      description: 'This api delete user'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error: null
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: string
+                    example: null
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error:
+                    code: 401
+                    message: 'Unaothorized access! User does not have access.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: object
+                    example:
+                      code: 401
+                      message: 'Unaothorized access! User does not have access.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Users Management'
+    get:
+      summary: "Show User Details\nThis api show the uer details."
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    user:
+                      id: 2
+                      first_name: usman
+                      last_name: khan
+                      email: faizanahmedraza35@gmail.com
+                      last_logged_in: null
+                      image: null
+                      status: active
+                      roles:
+                        -
+                          id: 2
+                          name: Manager
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                          permissions:
+                            -
+                              id: 14
+                              name: leads_all
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 15
+                              name: leads_read
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 16
+                              name: leads_create
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 17
+                              name: leads_update
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 18
+                              name: leads_delete
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 19
+                              name: leads_toggle_status
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 20
+                              name: leads_assign
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 21
+                              name: leads_comments
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                      permissions: []
+                      leads:
+                        -
+                          id: 1
+                          name: mehmood
+                          description: 'khan decription'
+                          email: clientabc@gmail.com
+                          phone: '+923325674517       '
+                          address: clientabc@gmail.com
+                          status: active
+                          created_at: '2022-08-06T12:16:25.000000Z'
+                    permissions:
+                      - access_all
+                  error: {  }
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      user:
+                        id: 2
+                        first_name: usman
+                        last_name: khan
+                        email: faizanahmedraza35@gmail.com
+                        last_logged_in: null
+                        image: null
+                        status: active
+                        roles:
+                          -
+                            id: 2
+                            name: Manager
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                            permissions:
+                              -
+                                id: 14
+                                name: leads_all
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 15
+                                name: leads_read
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 16
+                                name: leads_create
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 17
+                                name: leads_update
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 18
+                                name: leads_delete
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 19
+                                name: leads_toggle_status
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 20
+                                name: leads_assign
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 21
+                                name: leads_comments
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                        permissions: []
+                        leads:
+                          -
+                            id: 1
+                            name: mehmood
+                            description: 'khan decription'
+                            email: clientabc@gmail.com
+                            phone: '+923325674517       '
+                            address: clientabc@gmail.com
+                            status: active
+                            created_at: '2022-08-06T12:16:25.000000Z'
+                      permissions:
+                        - access_all
+                  error:
+                    type: object
+                    example: {  }
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: {  }
+                  error:
+                    code: 'Error code'
+                    message: 'Error Message.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: object
+                    example: {  }
+                  error:
+                    type: object
+                    example:
+                      code: 'Error code'
+                      message: 'Error Message.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error:
+                    code: 401
+                    message: 'Unaothorized access! User does not have access.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: object
+                    example:
+                      code: 401
+                      message: 'Unaothorized access! User does not have access.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Users Management'
+    put:
+      summary: 'Update User Details.'
+      description: 'This api update user details'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    user:
+                      id: 2
+                      first_name: usman
+                      last_name: khan
+                      email: faizanahmedraza35@gmail.com
+                      last_logged_in: null
+                      image: null
+                      status: active
+                      roles:
+                        -
+                          id: 2
+                          name: Manager
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                          permissions:
+                            -
+                              id: 14
+                              name: leads_all
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 15
+                              name: leads_read
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 16
+                              name: leads_create
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 17
+                              name: leads_update
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 18
+                              name: leads_delete
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 19
+                              name: leads_toggle_status
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 20
+                              name: leads_assign
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 21
+                              name: leads_comments
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                      permissions: []
+                      leads:
+                        -
+                          id: 1
+                          name: mehmood
+                          description: 'khan decription'
+                          email: clientabc@gmail.com
+                          phone: '+923325674517       '
+                          address: clientabc@gmail.com
+                          status: active
+                          created_at: '2022-08-06T12:16:25.000000Z'
+                    permissions:
+                      - access_all
+                  error: {  }
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      user:
+                        id: 2
+                        first_name: usman
+                        last_name: khan
+                        email: faizanahmedraza35@gmail.com
+                        last_logged_in: null
+                        image: null
+                        status: active
+                        roles:
+                          -
+                            id: 2
+                            name: Manager
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                            permissions:
+                              -
+                                id: 14
+                                name: leads_all
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 15
+                                name: leads_read
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 16
+                                name: leads_create
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 17
+                                name: leads_update
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 18
+                                name: leads_delete
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 19
+                                name: leads_toggle_status
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 20
+                                name: leads_assign
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 21
+                                name: leads_comments
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                        permissions: []
+                        leads:
+                          -
+                            id: 1
+                            name: mehmood
+                            description: 'khan decription'
+                            email: clientabc@gmail.com
+                            phone: '+923325674517       '
+                            address: clientabc@gmail.com
+                            status: active
+                            created_at: '2022-08-06T12:16:25.000000Z'
+                      permissions:
+                        - access_all
+                  error:
+                    type: object
+                    example: {  }
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: {  }
+                  error:
+                    code: 'Error code'
+                    message: 'Error Message.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: object
+                    example: {  }
+                  error:
+                    type: object
+                    example:
+                      code: 'Error code'
+                      message: 'Error Message.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error:
+                    code: 401
+                    message: 'Unaothorized access! User does not have access.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: object
+                    example:
+                      code: 401
+                      message: 'Unaothorized access! User does not have access.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Users Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: String
+                  description: ''
+                  example: reprehenderit
+                last_name:
+                  type: String
+                  description: ''
+                  example: veritatis
+                status:
+                  type: string
+                  description: 'ex: pending,active,blocked'
+                  example: aut
+                roles:
+                  type: array
+                  description: 'ex: [1,2,3]'
+                  example:
+                    - vel
+                  items:
+                    type: string
+                permissions:
+                  type: array
+                  description: 'ex: [1,2,3]'
+                  example:
+                    - quibusdam
+                  items:
+                    type: string
+                avatar:
+                  type: String
+                  description: 'ex: base64image'
+                  example: maiores
+              required:
+                - first_name
+                - last_name
+                - status
+                - roles
+    parameters:
+      -
+        in: path
+        name: id
+        description: ''
+        example: qui
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: user_id
+        description: Integer
+        example: aut
+        required: true
+        schema:
+          type: string
+  /v1/users:
+    get:
+      summary: "Get Users\nThis will return logged in user profile."
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    users:
+                      -
+                        id: 2
+                        first_name: usman
+                        last_name: khan
+                        email: faizanahmedraza35@gmail.com
+                        last_logged_in: null
+                        image: null
+                        status: active
+                        leads_assign_count: 1
+                      -
+                        id: 1
+                        first_name: 'Faizan Ahmed'
+                        last_name: Raza
+                        email: faizan.raza@saasfa.com
+                        last_logged_in: '2022-08-06 12:52:29'
+                        image: null
+                        status: active
+                        leads_assign_count: 0
+                    pagination:
+                      total: 2
+                      count: 2
+                      per_page: 20
+                      current_page: 1
+                      total_pages: 1
+                    permissions:
+                      - access_all
+                  error: {  }
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      users:
+                        -
+                          id: 2
+                          first_name: usman
+                          last_name: khan
+                          email: faizanahmedraza35@gmail.com
+                          last_logged_in: null
+                          image: null
+                          status: active
+                          leads_assign_count: 1
+                        -
+                          id: 1
+                          first_name: 'Faizan Ahmed'
+                          last_name: Raza
+                          email: faizan.raza@saasfa.com
+                          last_logged_in: '2022-08-06 12:52:29'
+                          image: null
+                          status: active
+                          leads_assign_count: 0
+                      pagination:
+                        total: 2
+                        count: 2
+                        per_page: 20
+                        current_page: 1
+                        total_pages: 1
+                      permissions:
+                        - access_all
+                  error:
+                    type: object
+                    example: {  }
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: {  }
+                  error:
+                    code: 'Error code'
+                    message: 'Error Message.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: object
+                    example: {  }
+                  error:
+                    type: object
+                    example:
+                      code: 'Error code'
+                      message: 'Error Message.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error:
+                    code: 401
+                    message: 'Unaothorized access! User does not have access.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: object
+                    example:
+                      code: 401
+                      message: 'Unaothorized access! User does not have access.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Users Management'
+    post:
+      summary: "Create Users\nThis api create new user."
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    user:
+                      id: 2
+                      first_name: usman
+                      last_name: khan
+                      email: faizanahmedraza35@gmail.com
+                      last_logged_in: null
+                      image: null
+                      status: active
+                      roles:
+                        -
+                          id: 2
+                          name: Manager
+                          created_at: '2022-08-06T12:15:18.000000Z'
+                          permissions:
+                            -
+                              id: 14
+                              name: leads_all
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 15
+                              name: leads_read
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 16
+                              name: leads_create
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 17
+                              name: leads_update
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 18
+                              name: leads_delete
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 19
+                              name: leads_toggle_status
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 20
+                              name: leads_assign
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                            -
+                              id: 21
+                              name: leads_comments
+                              created_at: '2022-08-06T12:15:18.000000Z'
+                      permissions: []
+                      leads:
+                        -
+                          id: 1
+                          name: mehmood
+                          description: 'khan decription'
+                          email: clientabc@gmail.com
+                          phone: '+923325674517       '
+                          address: clientabc@gmail.com
+                          status: active
+                          created_at: '2022-08-06T12:16:25.000000Z'
+                    permissions:
+                      - access_all
+                  error: {  }
+                  success: true
+                  message: 'Operation successful'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      user:
+                        id: 2
+                        first_name: usman
+                        last_name: khan
+                        email: faizanahmedraza35@gmail.com
+                        last_logged_in: null
+                        image: null
+                        status: active
+                        roles:
+                          -
+                            id: 2
+                            name: Manager
+                            created_at: '2022-08-06T12:15:18.000000Z'
+                            permissions:
+                              -
+                                id: 14
+                                name: leads_all
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 15
+                                name: leads_read
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 16
+                                name: leads_create
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 17
+                                name: leads_update
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 18
+                                name: leads_delete
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 19
+                                name: leads_toggle_status
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 20
+                                name: leads_assign
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                              -
+                                id: 21
+                                name: leads_comments
+                                created_at: '2022-08-06T12:15:18.000000Z'
+                        permissions: []
+                        leads:
+                          -
+                            id: 1
+                            name: mehmood
+                            description: 'khan decription'
+                            email: clientabc@gmail.com
+                            phone: '+923325674517       '
+                            address: clientabc@gmail.com
+                            status: active
+                            created_at: '2022-08-06T12:16:25.000000Z'
+                      permissions:
+                        - access_all
+                  error:
+                    type: object
+                    example: {  }
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Operation successful'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: {  }
+                  error:
+                    code: 'Error code'
+                    message: 'Error Message.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: object
+                    example: {  }
+                  error:
+                    type: object
+                    example:
+                      code: 'Error code'
+                      message: 'Error Message.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  error:
+                    code: 401
+                    message: 'Unaothorized access! User does not have access.'
+                  success: false
+                  message: 'Operation failed'
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  error:
+                    type: object
+                    example:
+                      code: 401
+                      message: 'Unaothorized access! User does not have access.'
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Operation failed'
+      tags:
+        - 'Users Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: String
+                  description: ''
+                  example: quidem
+                last_name:
+                  type: String
+                  description: ''
+                  example: error
+                email:
+                  type: email
+                  description: ''
+                  example: qui
+                password:
+                  type: String
+                  description: ''
+                  example: porro
+                password_confirmation:
+                  type: String
+                  description: ''
+                  example: qui
+                status:
+                  type: string
+                  description: 'ex: pending,active,blocked'
+                  example: dolores
+                roles:
+                  type: array
+                  description: 'ex: [1,2,3]'
+                  example:
+                    - facilis
+                  items:
+                    type: string
+                permissions:
+                  type: array
+                  description: 'ex: [1,2,3]'
+                  example:
+                    - sequi
+                  items:
+                    type: string
+                avatar:
+                  type: String
+                  description: 'ex: base64image'
+                  example: rerum
+              required:
+                - first_name
+                - last_name
+                - email
+                - roles
+    parameters:
+      -
+        in: path
+        name: users
+        description: 'Optional parameter. 1,2,3,4'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: qui
+      -
+        in: path
+        name: email
+        description: 'Optional parameter. ex: abc.com,xyz.co'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: dolorum
+      -
+        in: path
+        name: first_name
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: et
+      -
+        in: path
+        name: last_name
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: nihil
+      -
+        in: path
+        name: full_name
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: amet
+      -
+        in: path
+        name: status
+        description: 'Optional parameter. ex: pending,active,blocked'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: nostrum
+      -
+        in: path
+        name: order_by
+        description: 'Optional parameter. ex: asc/desc'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: officiis
+      -
+        in: path
+        name: from_date
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: Y-m-d
+      -
+        in: path
+        name: to_date
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: Y-m-d
+      -
+        in: path
+        name: pagination
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: boolean
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: true
+      -
+        in: path
+        name: page_limit
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 10
+      -
+        in: path
+        name: page
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 9
+tags:
+  -
+    name: Authentication
+    description: ''
+  -
+    name: 'Leads Management'
+    description: ''
+  -
+    name: 'Permissions Api'
+    description: ''
+  -
+    name: 'Roles Management'
+    description: ''
+  -
+    name: 'Users Management'
+    description: ''

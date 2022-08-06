@@ -1,0 +1,81 @@
+{
+    "data": {
+        "user": {
+            "id": 2,
+            "first_name": "usman",
+            "last_name": "khan",
+            "email": "faizanahmedraza35@gmail.com",
+            "last_logged_in": null,
+            "image": null,
+            "status": "active",
+            "roles": [
+                {
+                    "id": 2,
+                    "name": "Manager",
+                    "created_at": "2022-08-06T12:15:18.000000Z",
+                    "permissions": [
+                        {
+                            "id": 14,
+                            "name": "leads_all",
+                            "created_at": "2022-08-06T12:15:18.000000Z"
+                        },
+                        {
+                            "id": 15,
+                            "name": "leads_read",
+                            "created_at": "2022-08-06T12:15:18.000000Z"
+                        },
+                        {
+                            "id": 16,
+                            "name": "leads_create",
+                            "created_at": "2022-08-06T12:15:18.000000Z"
+                        },
+                        {
+                            "id": 17,
+                            "name": "leads_update",
+                            "created_at": "2022-08-06T12:15:18.000000Z"
+                        },
+                        {
+                            "id": 18,
+                            "name": "leads_delete",
+                            "created_at": "2022-08-06T12:15:18.000000Z"
+                        },
+                        {
+                            "id": 19,
+                            "name": "leads_toggle_status",
+                            "created_at": "2022-08-06T12:15:18.000000Z"
+                        },
+                        {
+                            "id": 20,
+                            "name": "leads_assign",
+                            "created_at": "2022-08-06T12:15:18.000000Z"
+                        },
+                        {
+                            "id": 21,
+                            "name": "leads_comments",
+                            "created_at": "2022-08-06T12:15:18.000000Z"
+                        }
+                    ]
+                }
+            ],
+            "permissions": [],
+            "leads": [
+                {
+                    "id": 1,
+                    "name": "mehmood",
+                    "description": "khan decription",
+                    "email": "clientabc@gmail.com",
+                    "phone": "+923325674517       ",
+                    "address": "clientabc@gmail.com",
+                    "status": "active",
+                    "created_at": "2022-08-06T12:16:25.000000Z"
+                }
+            ]
+        },
+        "permissions": [
+            "access_all"
+        ]
+    },
+    "error": {},
+    "success": true,
+    "message": "Operation successful"
+}

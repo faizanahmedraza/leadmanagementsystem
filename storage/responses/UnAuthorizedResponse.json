@@ -1,0 +1,9 @@
+{
+    "data": [],
+    "error": {
+        "code": 401,
+        "message": "Unaothorized access! User does not have access."
+    },
+    "success": false,
+    "message": "Operation failed"
+}

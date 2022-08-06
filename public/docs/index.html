@@ -1,0 +1,4101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Lumen Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+    <script>
+        var baseUrl = "http://localhost";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-3.35.0.js"></script>
+
+    <script src="../docs/js/theme-default-3.35.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                                                                            <ul id="tocify-header-0" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="introduction">
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                                            
+                                                                    </ul>
+                                                <ul id="tocify-header-1" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="authenticating-requests">
+                        <a href="#authenticating-requests">Authenticating requests</a>
+                    </li>
+                                            
+                                                </ul>
+                    
+                    <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authentication">
+                    <a href="#authentication">Authentication</a>
+                </li>
+                                    <ul id="tocify-subheader-authentication" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="authentication-DELETEv1-logout">
+                        <a href="#authentication-DELETEv1-logout">Logout
+Hit api and session get out</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="authentication-PUTv1-password">
+                        <a href="#authentication-PUTv1-password">Change Password
+change password request of user</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="authentication-POSTv1-auth-login">
+                        <a href="#authentication-POSTv1-auth-login">Access Token Or Login
+This function is useful for login, to return access token for users.</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="leads-management">
+                    <a href="#leads-management">Leads Management</a>
+                </li>
+                                    <ul id="tocify-subheader-leads-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="leads-management-DELETEv1-leads--id-">
+                        <a href="#leads-management-DELETEv1-leads--id-">Delete Lead</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="leads-management-PUTv1-leads-status--id-">
+                        <a href="#leads-management-PUTv1-leads-status--id-">Toggle Lead Status
+This api update the leads status to active or completed</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="leads-management-POSTv1-leads-assign">
+                        <a href="#leads-management-POSTv1-leads-assign">Assign Leads to User
+This api update the leads status to active or deactive
+other then customers.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="leads-management-POSTv1-leads-comments">
+                        <a href="#leads-management-POSTv1-leads-comments">Store Comments
+This api for comments on leads</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="leads-management-GETv1-leads-comments--id-">
+                        <a href="#leads-management-GETv1-leads-comments--id-">Get Lead Comments
+This api for comments on leads</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="leads-management-PUTv1-leads--id-">
+                        <a href="#leads-management-PUTv1-leads--id-">Update Lead Details.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="leads-management-GETv1-leads">
+                        <a href="#leads-management-GETv1-leads">Get Leads
+This will return leads list.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="leads-management-GETv1-leads--id-">
+                        <a href="#leads-management-GETv1-leads--id-">Show Lead Details
+This api show the lead details.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="leads-management-POSTv1-leads">
+                        <a href="#leads-management-POSTv1-leads">Create Leads
+This api create new lead.</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="permissions-api">
+                    <a href="#permissions-api">Permissions Api</a>
+                </li>
+                                    <ul id="tocify-subheader-permissions-api" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="permissions-api-GETv1-permissions">
+                        <a href="#permissions-api-GETv1-permissions">Permission List
+This api return the collection of all Permissions created.</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-5" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="roles-management">
+                    <a href="#roles-management">Roles Management</a>
+                </li>
+                                    <ul id="tocify-subheader-roles-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="roles-management-GETv1-roles">
+                        <a href="#roles-management-GETv1-roles">Roles List
+This api return the collection of all Roles created.</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-6" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="users-management">
+                    <a href="#users-management">Users Management</a>
+                </li>
+                                    <ul id="tocify-subheader-users-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="users-management-PUTv1-users-status--id-">
+                        <a href="#users-management-PUTv1-users-status--id-">Toggle User Status
+This api update the users status to active or deactive
+other then customers.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="users-management-DELETEv1-users--id-">
+                        <a href="#users-management-DELETEv1-users--id-">Delete User</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="users-management-GETv1-users">
+                        <a href="#users-management-GETv1-users">Get Users
+This will return logged in user profile.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="users-management-GETv1-users--id-">
+                        <a href="#users-management-GETv1-users--id-">Show User Details
+This api show the uer details.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="users-management-POSTv1-users">
+                        <a href="#users-management-POSTv1-users">Create Users
+This api create new user.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="users-management-PUTv1-users--id-">
+                        <a href="#users-management-PUTv1-users--id-">Update User Details.</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+        
+                        
+            </div>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+        <ul class="toc-footer" id="last-updated">
+        <li>Last updated: August 6 2022</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://localhost</code></pre>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="authentication">Authentication</h1>
+
+    
+
+            <h2 id="authentication-DELETEv1-logout">Logout
+Hit api and session get out</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEv1-logout">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/v1/logout" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: string required"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/logout"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "string required",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEv1-logout">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: null,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {},
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;Error code&quot;,
+        &quot;message&quot;: &quot;Error Message.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEv1-logout" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEv1-logout"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEv1-logout"></code></pre>
+</span>
+<span id="execution-error-DELETEv1-logout" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEv1-logout"></code></pre>
+</span>
+<form id="form-DELETEv1-logout" data-method="DELETE"
+      data-path="v1/logout"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"string required"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEv1-logout', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEv1-logout"
+                    onclick="tryItOut('DELETEv1-logout');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEv1-logout"
+                    onclick="cancelTryOut('DELETEv1-logout');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEv1-logout" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>v1/logout</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEv1-logout" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEv1-logout"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="authentication-PUTv1-password">Change Password
+change password request of user</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTv1-password">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/v1/password" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"password\": \"abcd1234\",
+    \"password_confirmation\": \"abcd1234\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/password"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "password": "abcd1234",
+    "password_confirmation": "abcd1234"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTv1-password">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: null,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {},
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;Error code&quot;,
+        &quot;message&quot;: &quot;Error Message.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTv1-password" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTv1-password"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTv1-password"></code></pre>
+</span>
+<span id="execution-error-PUTv1-password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTv1-password"></code></pre>
+</span>
+<form id="form-PUTv1-password" data-method="PUT"
+      data-path="v1/password"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTv1-password', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTv1-password"
+                    onclick="tryItOut('PUTv1-password');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTv1-password"
+                    onclick="cancelTryOut('PUTv1-password');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTv1-password" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>v1/password</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTv1-password" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTv1-password"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>String</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="PUTv1-password"
+               value="abcd1234"
+               data-component="body" hidden>
+    <br>
+<p>abcd1234</p>
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>String</small>  &nbsp;
+                <input type="text"
+               name="password_confirmation"
+               data-endpoint="PUTv1-password"
+               value="abcd1234"
+               data-component="body" hidden>
+    <br>
+<p>abcd1234</p>
+        </p>
+        </form>
+
+            <h2 id="authentication-POSTv1-auth-login">Access Token Or Login
+This function is useful for login, to return access token for users.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTv1-auth-login">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/v1/auth/login" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Client-ID: string required" \
+    --header "Client-Secret: string required" \
+    --data "{
+    \"email\": \"admin@my-app.com\",
+    \"password\": \"Abc*123*\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/auth/login"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Client-ID": "string required",
+    "Client-Secret": "string required",
+};
+
+let body = {
+    "email": "admin@my-app.com",
+    "password": "Abc*123*"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTv1-auth-login">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;authentication&quot;: {
+            &quot;access_token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzUyMjViZDVjYzU2Njk5Y2QxOTg5Y2JlOTJlOGQ0MjdiNmU3YTExNzk1NDRjYmU3ZjI3NmY1NzYyOWI0Mzc1ZjdhMmNjNDA1YmQxMWZjZjAiLCJpYXQiOjE2NTk3OTAzNDkuODAwNDQ2LCJuYmYiOjE2NTk3OTAzNDkuODAwNDUsImV4cCI6MTY5MTMyNjM0OS43ODExNjQsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.ASFjs9O5GuPS3KU8UCybiUe2NpfOBvXKXmMV0zk1QS1qAD_GPl6TUKpmpors_nW8WOZsMIJ7xUNctmcyqS71AqgOvcKxEOWAc2djHaaTD8l9SBhidm4cIwuZM6aEN1iDVL8VGxkcBhG6kJyj1_MHbuQPcnRRfEqhqSzp0PPSIRIpfTfiApvax9QUooCg9H3cXk3h3qRxZu3aqP7A5_STakqcv4lIeqeBaMToOgXCvVZGc_gG8K5bqAUgOi5l3oVc7R56-b6ebIKgUzln4Q1VagdH4xPedGlm0_GVrBVKBnMbgAmVQOBQo8ohiidvOu6Q3JRmMGuna92gzlBLL5Kk_e-fI4mlWnhVWoz2-U8KJjvSGDFPYHlgBvqBYAZbWxZsRbKShecRcxqt89tRFy8XwKwP2UBvp-CDsof3j-FpJKa0Uhf9fc5u8R0o1D1LAmUJKUE1dyr3Unta6gkAvJW8Wnk_jPnIYn7hezmglGwn45NNagJNJZk8s0ftk7Lr2CT8H4CszYs--I_2YOtSykvGw1tr3f4-n55KaEXUNMukybmALLuPxvFu7av5eheNYnvwKa6-x7Xx6-qtWA0ZpOFsVfEA5OHUMN0tknY6wOqMfEwJ9F-on3xomCIE8l9TQHL5VWeKD8HNvGUWS9xN-6UQ379Xg7OLIAtiTAZ9Bb44Izo&quot;,
+            &quot;token_type&quot;: &quot;Bearer&quot;,
+            &quot;expiry&quot;: &quot;2022-08-16 12:52:29&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 1,
+                &quot;first_name&quot;: &quot;Faizan Ahmed&quot;,
+                &quot;last_name&quot;: &quot;Raza&quot;,
+                &quot;email&quot;: &quot;faizan.raza@saasfa.com&quot;,
+                &quot;last_logged_in&quot;: &quot;2022-08-06T12:52:29.816544Z&quot;,
+                &quot;image&quot;: null,
+                &quot;status&quot;: &quot;active&quot;,
+                &quot;roles&quot;: [
+                    {
+                        &quot;id&quot;: 1,
+                        &quot;name&quot;: &quot;Admin&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;,
+                        &quot;permissions&quot;: [
+                            {
+                                &quot;id&quot;: 1,
+                                &quot;name&quot;: &quot;access_all&quot;,
+                                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                            }
+                        ]
+                    }
+                ],
+                &quot;permissions&quot;: []
+            }
+        }
+    },
+    &quot;error&quot;: {},
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {},
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;Error code&quot;,
+        &quot;message&quot;: &quot;Error Message.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTv1-auth-login" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTv1-auth-login"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTv1-auth-login"></code></pre>
+</span>
+<span id="execution-error-POSTv1-auth-login" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTv1-auth-login"></code></pre>
+</span>
+<form id="form-POSTv1-auth-login" data-method="POST"
+      data-path="v1/auth/login"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Client-ID":"string required","Client-Secret":"string required"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTv1-auth-login', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTv1-auth-login"
+                    onclick="tryItOut('POSTv1-auth-login');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTv1-auth-login"
+                    onclick="cancelTryOut('POSTv1-auth-login');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTv1-auth-login" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>v1/auth/login</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>email</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTv1-auth-login"
+               value="admin@my-app.com"
+               data-component="body" hidden>
+    <br>
+<p>The username of user.</p>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTv1-auth-login"
+               value="Abc*123*"
+               data-component="body" hidden>
+    <br>
+<p>The password of user.</p>
+        </p>
+        </form>
+
+        <h1 id="leads-management">Leads Management</h1>
+
+    
+
+            <h2 id="leads-management-DELETEv1-leads--id-">Delete Lead</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This api delete lead</p>
+
+<span id="example-requests-DELETEv1-leads--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/v1/leads/est" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/leads/est"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEv1-leads--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: null,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: {
+        &quot;code&quot;: 401,
+        &quot;message&quot;: &quot;Unaothorized access! User does not have access.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEv1-leads--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEv1-leads--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEv1-leads--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEv1-leads--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEv1-leads--id-"></code></pre>
+</span>
+<form id="form-DELETEv1-leads--id-" data-method="DELETE"
+      data-path="v1/leads/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEv1-leads--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEv1-leads--id-"
+                    onclick="tryItOut('DELETEv1-leads--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEv1-leads--id-"
+                    onclick="cancelTryOut('DELETEv1-leads--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEv1-leads--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>v1/leads/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEv1-leads--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEv1-leads--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="DELETEv1-leads--id-"
+               value="est"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>lead_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="lead_id"
+               data-endpoint="DELETEv1-leads--id-"
+               value="est"
+               data-component="url" hidden>
+    <br>
+<p>Integer</p>
+            </p>
+                    </form>
+
+            <h2 id="leads-management-PUTv1-leads-status--id-">Toggle Lead Status
+This api update the leads status to active or completed</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTv1-leads-status--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/v1/leads/status/corporis" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/leads/status/corporis"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTv1-leads-status--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: null,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: {
+        &quot;code&quot;: 401,
+        &quot;message&quot;: &quot;Unaothorized access! User does not have access.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTv1-leads-status--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTv1-leads-status--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTv1-leads-status--id-"></code></pre>
+</span>
+<span id="execution-error-PUTv1-leads-status--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTv1-leads-status--id-"></code></pre>
+</span>
+<form id="form-PUTv1-leads-status--id-" data-method="PUT"
+      data-path="v1/leads/status/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTv1-leads-status--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTv1-leads-status--id-"
+                    onclick="tryItOut('PUTv1-leads-status--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTv1-leads-status--id-"
+                    onclick="cancelTryOut('PUTv1-leads-status--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTv1-leads-status--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>v1/leads/status/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTv1-leads-status--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTv1-leads-status--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="PUTv1-leads-status--id-"
+               value="corporis"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>lead_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="lead_id"
+               data-endpoint="PUTv1-leads-status--id-"
+               value="9"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="leads-management-POSTv1-leads-assign">Assign Leads to User
+This api update the leads status to active or deactive
+other then customers.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTv1-leads-assign">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/v1/leads/assign" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"leads\": [
+        \"enim\"
+    ]
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/leads/assign"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "leads": [
+        "enim"
+    ]
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTv1-leads-assign">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: null,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTv1-leads-assign" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTv1-leads-assign"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTv1-leads-assign"></code></pre>
+</span>
+<span id="execution-error-POSTv1-leads-assign" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTv1-leads-assign"></code></pre>
+</span>
+<form id="form-POSTv1-leads-assign" data-method="POST"
+      data-path="v1/leads/assign"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTv1-leads-assign', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTv1-leads-assign"
+                    onclick="tryItOut('POSTv1-leads-assign');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTv1-leads-assign"
+                    onclick="cancelTryOut('POSTv1-leads-assign');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTv1-leads-assign" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>v1/leads/assign</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTv1-leads-assign" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTv1-leads-assign"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>leads</code></b>&nbsp;&nbsp;<small>string[]</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="leads[0]"
+               data-endpoint="POSTv1-leads-assign"
+               data-component="body" hidden>
+        <input type="text"
+               name="leads[1]"
+               data-endpoint="POSTv1-leads-assign"
+               data-component="body" hidden>
+    <br>
+<p>integer required</p>
+        </p>
+        </form>
+
+            <h2 id="leads-management-POSTv1-leads-comments">Store Comments
+This api for comments on leads</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTv1-leads-comments">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/v1/leads/comments" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"lead_id\": \"soluta\",
+    \"description\": \"asperiores\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/leads/comments"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "lead_id": "soluta",
+    "description": "asperiores"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTv1-leads-comments">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: null,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTv1-leads-comments" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTv1-leads-comments"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTv1-leads-comments"></code></pre>
+</span>
+<span id="execution-error-POSTv1-leads-comments" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTv1-leads-comments"></code></pre>
+</span>
+<form id="form-POSTv1-leads-comments" data-method="POST"
+      data-path="v1/leads/comments"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTv1-leads-comments', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTv1-leads-comments"
+                    onclick="tryItOut('POSTv1-leads-comments');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTv1-leads-comments"
+                    onclick="cancelTryOut('POSTv1-leads-comments');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTv1-leads-comments" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>v1/leads/comments</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTv1-leads-comments" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTv1-leads-comments"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>lead_id</code></b>&nbsp;&nbsp;<small>Integer</small>  &nbsp;
+                <input type="text"
+               name="lead_id"
+               data-endpoint="POSTv1-leads-comments"
+               value="soluta"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>description</code></b>&nbsp;&nbsp;<small>String</small>  &nbsp;
+                <input type="text"
+               name="description"
+               data-endpoint="POSTv1-leads-comments"
+               value="asperiores"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="leads-management-GETv1-leads-comments--id-">Get Lead Comments
+This api for comments on leads</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETv1-leads-comments--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/v1/leads/comments/nihil" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/leads/comments/nihil"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETv1-leads-comments--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: null,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-leads-comments--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-leads-comments--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-leads-comments--id-"></code></pre>
+</span>
+<span id="execution-error-GETv1-leads-comments--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-leads-comments--id-"></code></pre>
+</span>
+<form id="form-GETv1-leads-comments--id-" data-method="GET"
+      data-path="v1/leads/comments/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-leads-comments--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETv1-leads-comments--id-"
+                    onclick="tryItOut('GETv1-leads-comments--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETv1-leads-comments--id-"
+                    onclick="cancelTryOut('GETv1-leads-comments--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETv1-leads-comments--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/leads/comments/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETv1-leads-comments--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETv1-leads-comments--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETv1-leads-comments--id-"
+               value="nihil"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>lead_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="lead_id"
+               data-endpoint="GETv1-leads-comments--id-"
+               value="10"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="leads-management-PUTv1-leads--id-">Update Lead Details.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This api update lead details</p>
+
+<span id="example-requests-PUTv1-leads--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/v1/leads/expedita" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"sunt\",
+    \"description\": \"qui\",
+    \"phone\": \"ullam\",
+    \"email\": \"adipisci\",
+    \"address\": \"qui\",
+    \"status\": \"sint\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/leads/expedita"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "sunt",
+    "description": "qui",
+    "phone": "ullam",
+    "email": "adipisci",
+    "address": "qui",
+    "status": "sint"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTv1-leads--id-">
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {},
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;Error code&quot;,
+        &quot;message&quot;: &quot;Error Message.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTv1-leads--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTv1-leads--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTv1-leads--id-"></code></pre>
+</span>
+<span id="execution-error-PUTv1-leads--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTv1-leads--id-"></code></pre>
+</span>
+<form id="form-PUTv1-leads--id-" data-method="PUT"
+      data-path="v1/leads/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTv1-leads--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTv1-leads--id-"
+                    onclick="tryItOut('PUTv1-leads--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTv1-leads--id-"
+                    onclick="cancelTryOut('PUTv1-leads--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTv1-leads--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>v1/leads/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTv1-leads--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTv1-leads--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="PUTv1-leads--id-"
+               value="expedita"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>lead_id</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="lead_id"
+               data-endpoint="PUTv1-leads--id-"
+               value="excepturi"
+               data-component="url" hidden>
+    <br>
+<p>Integer required</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>String</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="PUTv1-leads--id-"
+               value="sunt"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>description</code></b>&nbsp;&nbsp;<small>String</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="description"
+               data-endpoint="PUTv1-leads--id-"
+               value="qui"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>phone</code></b>&nbsp;&nbsp;<small>email</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="phone"
+               data-endpoint="PUTv1-leads--id-"
+               value="ullam"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>String</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="PUTv1-leads--id-"
+               value="adipisci"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>address</code></b>&nbsp;&nbsp;<small>String</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="address"
+               data-endpoint="PUTv1-leads--id-"
+               value="qui"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>status</code></b>&nbsp;&nbsp;<small>String</small>  &nbsp;
+                <input type="text"
+               name="status"
+               data-endpoint="PUTv1-leads--id-"
+               value="sint"
+               data-component="body" hidden>
+    <br>
+<p>ex: pending,active,completed</p>
+        </p>
+        </form>
+
+            <h2 id="leads-management-GETv1-leads">Get Leads
+This will return leads list.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETv1-leads">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/v1/leads" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/leads"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETv1-leads">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;leads&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;mehmood&quot;,
+                &quot;description&quot;: &quot;khan decription&quot;,
+                &quot;email&quot;: &quot;clientabc@gmail.com&quot;,
+                &quot;phone&quot;: &quot;+923325674517       &quot;,
+                &quot;address&quot;: &quot;clientabc@gmail.com&quot;,
+                &quot;status&quot;: &quot;active&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:16:25.000000Z&quot;,
+                &quot;assigned_users_count&quot;: 1
+            }
+        ],
+        &quot;pagination&quot;: {
+            &quot;total&quot;: 1,
+            &quot;count&quot;: 1,
+            &quot;per_page&quot;: 20,
+            &quot;current_page&quot;: 1,
+            &quot;total_pages&quot;: 1
+        },
+        &quot;permissions&quot;: [
+            &quot;access_all&quot;
+        ]
+    },
+    &quot;error&quot;: {},
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {},
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;Error code&quot;,
+        &quot;message&quot;: &quot;Error Message.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-leads" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-leads"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-leads"></code></pre>
+</span>
+<span id="execution-error-GETv1-leads" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-leads"></code></pre>
+</span>
+<form id="form-GETv1-leads" data-method="GET"
+      data-path="v1/leads"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-leads', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETv1-leads"
+                    onclick="tryItOut('GETv1-leads');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETv1-leads"
+                    onclick="cancelTryOut('GETv1-leads');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETv1-leads" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/leads</code></b>
+        </p>
+                <p>
+            <label id="auth-GETv1-leads" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETv1-leads"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>leads</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="leads"
+               data-endpoint="GETv1-leads"
+               value="optio"
+               data-component="url" hidden>
+    <br>
+<p>1,2,3,4</p>
+            </p>
+                    <p>
+                <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="GETv1-leads"
+               value="est"
+               data-component="url" hidden>
+    <br>
+<p>ex: abc</p>
+            </p>
+                    <p>
+                <b><code>status</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="status"
+               data-endpoint="GETv1-leads"
+               value="quia"
+               data-component="url" hidden>
+    <br>
+<p>ex: pending,active,completed</p>
+            </p>
+                    <p>
+                <b><code>order_by</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="order_by"
+               data-endpoint="GETv1-leads"
+               value="est"
+               data-component="url" hidden>
+    <br>
+<p>ex: asc/desc</p>
+            </p>
+                    <p>
+                <b><code>from_date</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="from_date"
+               data-endpoint="GETv1-leads"
+               value="Y-m-d"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>to_date</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="to_date"
+               data-endpoint="GETv1-leads"
+               value="Y-m-d"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>pagination</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="GETv1-leads" hidden>
+            <input type="radio" name="pagination"
+                   value="1"
+                   data-endpoint="GETv1-leads"
+                   data-component="url"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETv1-leads" hidden>
+            <input type="radio" name="pagination"
+                   value="0"
+                   data-endpoint="GETv1-leads"
+                   data-component="url"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>page_limit</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page_limit"
+               data-endpoint="GETv1-leads"
+               value="16"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="GETv1-leads"
+               value="11"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="leads-management-GETv1-leads--id-">Show Lead Details
+This api show the lead details.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETv1-leads--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/v1/leads/sed" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/leads/sed"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETv1-leads--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;lead&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;mehmood&quot;,
+            &quot;description&quot;: &quot;khan decription&quot;,
+            &quot;email&quot;: &quot;clientabc@gmail.com&quot;,
+            &quot;phone&quot;: &quot;+923325674517       &quot;,
+            &quot;address&quot;: &quot;clientabc@gmail.com&quot;,
+            &quot;status&quot;: &quot;active&quot;,
+            &quot;created_at&quot;: &quot;2022-08-06T12:16:25.000000Z&quot;,
+            &quot;users&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;first_name&quot;: &quot;usman&quot;,
+                    &quot;last_name&quot;: &quot;khan&quot;,
+                    &quot;email&quot;: &quot;faizanahmedraza35@gmail.com&quot;,
+                    &quot;last_logged_in&quot;: null,
+                    &quot;image&quot;: null,
+                    &quot;status&quot;: &quot;active&quot;
+                }
+            ],
+            &quot;comments&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;description&quot;: &quot;my decription&quot;,
+                    &quot;created_at&quot;: &quot;2022-08-06T12:17:14.000000Z&quot;
+                }
+            ]
+        },
+        &quot;permissions&quot;: [
+            &quot;access_all&quot;
+        ]
+    },
+    &quot;error&quot;: {},
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {},
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;Error code&quot;,
+        &quot;message&quot;: &quot;Error Message.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-leads--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-leads--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-leads--id-"></code></pre>
+</span>
+<span id="execution-error-GETv1-leads--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-leads--id-"></code></pre>
+</span>
+<form id="form-GETv1-leads--id-" data-method="GET"
+      data-path="v1/leads/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-leads--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETv1-leads--id-"
+                    onclick="tryItOut('GETv1-leads--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETv1-leads--id-"
+                    onclick="cancelTryOut('GETv1-leads--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETv1-leads--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/leads/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETv1-leads--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETv1-leads--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETv1-leads--id-"
+               value="sed"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>lead_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="lead_id"
+               data-endpoint="GETv1-leads--id-"
+               value="qui"
+               data-component="url" hidden>
+    <br>
+<p>Integer</p>
+            </p>
+                    </form>
+
+            <h2 id="leads-management-POSTv1-leads">Create Leads
+This api create new lead.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTv1-leads">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/v1/leads" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"id\",
+    \"description\": \"quibusdam\",
+    \"phone\": \"qui\",
+    \"email\": \"dolorum\",
+    \"address\": \"et\",
+    \"status\": \"consequuntur\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/leads"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "id",
+    "description": "quibusdam",
+    "phone": "qui",
+    "email": "dolorum",
+    "address": "et",
+    "status": "consequuntur"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTv1-leads">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;lead&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;mehmood&quot;,
+            &quot;description&quot;: &quot;khan decription&quot;,
+            &quot;email&quot;: &quot;clientabc@gmail.com&quot;,
+            &quot;phone&quot;: &quot;+923325674517       &quot;,
+            &quot;address&quot;: &quot;clientabc@gmail.com&quot;,
+            &quot;status&quot;: &quot;active&quot;,
+            &quot;created_at&quot;: &quot;2022-08-06T12:16:25.000000Z&quot;,
+            &quot;users&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;first_name&quot;: &quot;usman&quot;,
+                    &quot;last_name&quot;: &quot;khan&quot;,
+                    &quot;email&quot;: &quot;faizanahmedraza35@gmail.com&quot;,
+                    &quot;last_logged_in&quot;: null,
+                    &quot;image&quot;: null,
+                    &quot;status&quot;: &quot;active&quot;
+                }
+            ],
+            &quot;comments&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;description&quot;: &quot;my decription&quot;,
+                    &quot;created_at&quot;: &quot;2022-08-06T12:17:14.000000Z&quot;
+                }
+            ]
+        },
+        &quot;permissions&quot;: [
+            &quot;access_all&quot;
+        ]
+    },
+    &quot;error&quot;: {},
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {},
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;Error code&quot;,
+        &quot;message&quot;: &quot;Error Message.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTv1-leads" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTv1-leads"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTv1-leads"></code></pre>
+</span>
+<span id="execution-error-POSTv1-leads" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTv1-leads"></code></pre>
+</span>
+<form id="form-POSTv1-leads" data-method="POST"
+      data-path="v1/leads"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTv1-leads', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTv1-leads"
+                    onclick="tryItOut('POSTv1-leads');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTv1-leads"
+                    onclick="cancelTryOut('POSTv1-leads');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTv1-leads" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>v1/leads</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTv1-leads" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTv1-leads"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>String</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTv1-leads"
+               value="id"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>description</code></b>&nbsp;&nbsp;<small>String</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="description"
+               data-endpoint="POSTv1-leads"
+               value="quibusdam"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>phone</code></b>&nbsp;&nbsp;<small>email</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="phone"
+               data-endpoint="POSTv1-leads"
+               value="qui"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>String</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTv1-leads"
+               value="dolorum"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>address</code></b>&nbsp;&nbsp;<small>String</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="address"
+               data-endpoint="POSTv1-leads"
+               value="et"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>status</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="status"
+               data-endpoint="POSTv1-leads"
+               value="consequuntur"
+               data-component="body" hidden>
+    <br>
+<p>ex: pending,active,completed</p>
+        </p>
+        </form>
+
+        <h1 id="permissions-api">Permissions Api</h1>
+
+    
+
+            <h2 id="permissions-api-GETv1-permissions">Permission List
+This api return the collection of all Permissions created.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETv1-permissions">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/v1/permissions" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: String required Example: Bearer TOKEN"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/permissions"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "String required Example: Bearer TOKEN",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETv1-permissions">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;collections&quot;: [
+            {
+                &quot;id&quot;: 21,
+                &quot;name&quot;: &quot;leads_comments&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 20,
+                &quot;name&quot;: &quot;leads_assign&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 19,
+                &quot;name&quot;: &quot;leads_toggle_status&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 18,
+                &quot;name&quot;: &quot;leads_delete&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 17,
+                &quot;name&quot;: &quot;leads_update&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 16,
+                &quot;name&quot;: &quot;leads_create&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 15,
+                &quot;name&quot;: &quot;leads_read&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 14,
+                &quot;name&quot;: &quot;leads_all&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 13,
+                &quot;name&quot;: &quot;permissions_list&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;roles_delete&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;roles_update&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;roles_create&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;roles_read&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;roles_all&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;users_toggle_status&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;user_management_delete&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;user_management_update&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;user_management_create&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;user_management_read&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;user_management_all&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            },
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;access_all&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+            }
+        ],
+        &quot;permissions&quot;: [
+            &quot;access_all&quot;
+        ]
+    },
+    &quot;error&quot;: {},
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-permissions" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-permissions"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-permissions"></code></pre>
+</span>
+<span id="execution-error-GETv1-permissions" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-permissions"></code></pre>
+</span>
+<form id="form-GETv1-permissions" data-method="GET"
+      data-path="v1/permissions"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"String required Example: Bearer TOKEN"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-permissions', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETv1-permissions"
+                    onclick="tryItOut('GETv1-permissions');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETv1-permissions"
+                    onclick="cancelTryOut('GETv1-permissions');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETv1-permissions" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/permissions</code></b>
+        </p>
+                <p>
+            <label id="auth-GETv1-permissions" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETv1-permissions"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+        <h1 id="roles-management">Roles Management</h1>
+
+    
+
+            <h2 id="roles-management-GETv1-roles">Roles List
+This api return the collection of all Roles created.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETv1-roles">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/v1/roles" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: String required Example: Bearer TOKEN"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/roles"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "String required Example: Bearer TOKEN",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETv1-roles">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;roles&quot;: [
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;SalesPerson&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;,
+                &quot;permissions&quot;: [
+                    {
+                        &quot;id&quot;: 14,
+                        &quot;name&quot;: &quot;leads_all&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    },
+                    {
+                        &quot;id&quot;: 15,
+                        &quot;name&quot;: &quot;leads_read&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    },
+                    {
+                        &quot;id&quot;: 21,
+                        &quot;name&quot;: &quot;leads_comments&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    }
+                ]
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Manager&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;,
+                &quot;permissions&quot;: [
+                    {
+                        &quot;id&quot;: 14,
+                        &quot;name&quot;: &quot;leads_all&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    },
+                    {
+                        &quot;id&quot;: 15,
+                        &quot;name&quot;: &quot;leads_read&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    },
+                    {
+                        &quot;id&quot;: 16,
+                        &quot;name&quot;: &quot;leads_create&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    },
+                    {
+                        &quot;id&quot;: 17,
+                        &quot;name&quot;: &quot;leads_update&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    },
+                    {
+                        &quot;id&quot;: 18,
+                        &quot;name&quot;: &quot;leads_delete&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    },
+                    {
+                        &quot;id&quot;: 19,
+                        &quot;name&quot;: &quot;leads_toggle_status&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    },
+                    {
+                        &quot;id&quot;: 20,
+                        &quot;name&quot;: &quot;leads_assign&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    },
+                    {
+                        &quot;id&quot;: 21,
+                        &quot;name&quot;: &quot;leads_comments&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    }
+                ]
+            },
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Admin&quot;,
+                &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;,
+                &quot;permissions&quot;: [
+                    {
+                        &quot;id&quot;: 1,
+                        &quot;name&quot;: &quot;access_all&quot;,
+                        &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                    }
+                ]
+            }
+        ],
+        &quot;pagination&quot;: {
+            &quot;total&quot;: 3,
+            &quot;count&quot;: 3,
+            &quot;per_page&quot;: 20,
+            &quot;current_page&quot;: 1,
+            &quot;total_pages&quot;: 1
+        },
+        &quot;permissions&quot;: [
+            &quot;access_all&quot;
+        ]
+    },
+    &quot;error&quot;: {},
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-roles" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-roles"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-roles"></code></pre>
+</span>
+<span id="execution-error-GETv1-roles" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-roles"></code></pre>
+</span>
+<form id="form-GETv1-roles" data-method="GET"
+      data-path="v1/roles"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"String required Example: Bearer TOKEN"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-roles', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETv1-roles"
+                    onclick="tryItOut('GETv1-roles');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETv1-roles"
+                    onclick="cancelTryOut('GETv1-roles');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETv1-roles" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/roles</code></b>
+        </p>
+                <p>
+            <label id="auth-GETv1-roles" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETv1-roles"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>order_by</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="order_by"
+               data-endpoint="GETv1-roles"
+               value="voluptas"
+               data-component="url" hidden>
+    <br>
+<p>ex: asc/desc</p>
+            </p>
+                    <p>
+                <b><code>from_date</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="from_date"
+               data-endpoint="GETv1-roles"
+               value="Y-m-d"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>to_date</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="to_date"
+               data-endpoint="GETv1-roles"
+               value="Y-m-d"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>pagination</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="GETv1-roles" hidden>
+            <input type="radio" name="pagination"
+                   value="1"
+                   data-endpoint="GETv1-roles"
+                   data-component="url"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETv1-roles" hidden>
+            <input type="radio" name="pagination"
+                   value="0"
+                   data-endpoint="GETv1-roles"
+                   data-component="url"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>page_limit</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page_limit"
+               data-endpoint="GETv1-roles"
+               value="4"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="GETv1-roles"
+               value="12"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+        <h1 id="users-management">Users Management</h1>
+
+    
+
+            <h2 id="users-management-PUTv1-users-status--id-">Toggle User Status
+This api update the users status to active or deactive
+other then customers.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTv1-users-status--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/v1/users/status/voluptatem" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/users/status/voluptatem"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTv1-users-status--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: null,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: {
+        &quot;code&quot;: 401,
+        &quot;message&quot;: &quot;Unaothorized access! User does not have access.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTv1-users-status--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTv1-users-status--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTv1-users-status--id-"></code></pre>
+</span>
+<span id="execution-error-PUTv1-users-status--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTv1-users-status--id-"></code></pre>
+</span>
+<form id="form-PUTv1-users-status--id-" data-method="PUT"
+      data-path="v1/users/status/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTv1-users-status--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTv1-users-status--id-"
+                    onclick="tryItOut('PUTv1-users-status--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTv1-users-status--id-"
+                    onclick="cancelTryOut('PUTv1-users-status--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTv1-users-status--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>v1/users/status/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTv1-users-status--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTv1-users-status--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="PUTv1-users-status--id-"
+               value="voluptatem"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user_id"
+               data-endpoint="PUTv1-users-status--id-"
+               value="12"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="users-management-DELETEv1-users--id-">Delete User</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This api delete user</p>
+
+<span id="example-requests-DELETEv1-users--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/v1/users/qui" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/users/qui"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEv1-users--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: null,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: {
+        &quot;code&quot;: 401,
+        &quot;message&quot;: &quot;Unaothorized access! User does not have access.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEv1-users--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEv1-users--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEv1-users--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEv1-users--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEv1-users--id-"></code></pre>
+</span>
+<form id="form-DELETEv1-users--id-" data-method="DELETE"
+      data-path="v1/users/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEv1-users--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEv1-users--id-"
+                    onclick="tryItOut('DELETEv1-users--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEv1-users--id-"
+                    onclick="cancelTryOut('DELETEv1-users--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEv1-users--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>v1/users/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEv1-users--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEv1-users--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="DELETEv1-users--id-"
+               value="qui"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>user_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="user_id"
+               data-endpoint="DELETEv1-users--id-"
+               value="aut"
+               data-component="url" hidden>
+    <br>
+<p>Integer</p>
+            </p>
+                    </form>
+
+            <h2 id="users-management-GETv1-users">Get Users
+This will return logged in user profile.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETv1-users">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/v1/users" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/users"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETv1-users">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;users&quot;: [
+            {
+                &quot;id&quot;: 2,
+                &quot;first_name&quot;: &quot;usman&quot;,
+                &quot;last_name&quot;: &quot;khan&quot;,
+                &quot;email&quot;: &quot;faizanahmedraza35@gmail.com&quot;,
+                &quot;last_logged_in&quot;: null,
+                &quot;image&quot;: null,
+                &quot;status&quot;: &quot;active&quot;,
+                &quot;leads_assign_count&quot;: 1
+            },
+            {
+                &quot;id&quot;: 1,
+                &quot;first_name&quot;: &quot;Faizan Ahmed&quot;,
+                &quot;last_name&quot;: &quot;Raza&quot;,
+                &quot;email&quot;: &quot;faizan.raza@saasfa.com&quot;,
+                &quot;last_logged_in&quot;: &quot;2022-08-06 12:52:29&quot;,
+                &quot;image&quot;: null,
+                &quot;status&quot;: &quot;active&quot;,
+                &quot;leads_assign_count&quot;: 0
+            }
+        ],
+        &quot;pagination&quot;: {
+            &quot;total&quot;: 2,
+            &quot;count&quot;: 2,
+            &quot;per_page&quot;: 20,
+            &quot;current_page&quot;: 1,
+            &quot;total_pages&quot;: 1
+        },
+        &quot;permissions&quot;: [
+            &quot;access_all&quot;
+        ]
+    },
+    &quot;error&quot;: {},
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {},
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;Error code&quot;,
+        &quot;message&quot;: &quot;Error Message.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: {
+        &quot;code&quot;: 401,
+        &quot;message&quot;: &quot;Unaothorized access! User does not have access.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-users" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-users"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-users"></code></pre>
+</span>
+<span id="execution-error-GETv1-users" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-users"></code></pre>
+</span>
+<form id="form-GETv1-users" data-method="GET"
+      data-path="v1/users"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-users', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETv1-users"
+                    onclick="tryItOut('GETv1-users');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETv1-users"
+                    onclick="cancelTryOut('GETv1-users');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETv1-users" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/users</code></b>
+        </p>
+                <p>
+            <label id="auth-GETv1-users" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETv1-users"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>users</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="users"
+               data-endpoint="GETv1-users"
+               value="qui"
+               data-component="url" hidden>
+    <br>
+<p>1,2,3,4</p>
+            </p>
+                    <p>
+                <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="GETv1-users"
+               value="dolorum"
+               data-component="url" hidden>
+    <br>
+<p>ex: abc.com,xyz.co</p>
+            </p>
+                    <p>
+                <b><code>first_name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="first_name"
+               data-endpoint="GETv1-users"
+               value="et"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>last_name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="last_name"
+               data-endpoint="GETv1-users"
+               value="nihil"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>full_name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="full_name"
+               data-endpoint="GETv1-users"
+               value="amet"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>status</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="status"
+               data-endpoint="GETv1-users"
+               value="nostrum"
+               data-component="url" hidden>
+    <br>
+<p>ex: pending,active,blocked</p>
+            </p>
+                    <p>
+                <b><code>order_by</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="order_by"
+               data-endpoint="GETv1-users"
+               value="officiis"
+               data-component="url" hidden>
+    <br>
+<p>ex: asc/desc</p>
+            </p>
+                    <p>
+                <b><code>from_date</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="from_date"
+               data-endpoint="GETv1-users"
+               value="Y-m-d"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>to_date</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="to_date"
+               data-endpoint="GETv1-users"
+               value="Y-m-d"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>pagination</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="GETv1-users" hidden>
+            <input type="radio" name="pagination"
+                   value="1"
+                   data-endpoint="GETv1-users"
+                   data-component="url"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETv1-users" hidden>
+            <input type="radio" name="pagination"
+                   value="0"
+                   data-endpoint="GETv1-users"
+                   data-component="url"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>page_limit</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page_limit"
+               data-endpoint="GETv1-users"
+               value="10"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="GETv1-users"
+               value="9"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="users-management-GETv1-users--id-">Show User Details
+This api show the uer details.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETv1-users--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/v1/users/laudantium" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/users/laudantium"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETv1-users--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;user&quot;: {
+            &quot;id&quot;: 2,
+            &quot;first_name&quot;: &quot;usman&quot;,
+            &quot;last_name&quot;: &quot;khan&quot;,
+            &quot;email&quot;: &quot;faizanahmedraza35@gmail.com&quot;,
+            &quot;last_logged_in&quot;: null,
+            &quot;image&quot;: null,
+            &quot;status&quot;: &quot;active&quot;,
+            &quot;roles&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;Manager&quot;,
+                    &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;,
+                    &quot;permissions&quot;: [
+                        {
+                            &quot;id&quot;: 14,
+                            &quot;name&quot;: &quot;leads_all&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 15,
+                            &quot;name&quot;: &quot;leads_read&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 16,
+                            &quot;name&quot;: &quot;leads_create&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 17,
+                            &quot;name&quot;: &quot;leads_update&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 18,
+                            &quot;name&quot;: &quot;leads_delete&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 19,
+                            &quot;name&quot;: &quot;leads_toggle_status&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 20,
+                            &quot;name&quot;: &quot;leads_assign&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 21,
+                            &quot;name&quot;: &quot;leads_comments&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        }
+                    ]
+                }
+            ],
+            &quot;permissions&quot;: [],
+            &quot;leads&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;mehmood&quot;,
+                    &quot;description&quot;: &quot;khan decription&quot;,
+                    &quot;email&quot;: &quot;clientabc@gmail.com&quot;,
+                    &quot;phone&quot;: &quot;+923325674517       &quot;,
+                    &quot;address&quot;: &quot;clientabc@gmail.com&quot;,
+                    &quot;status&quot;: &quot;active&quot;,
+                    &quot;created_at&quot;: &quot;2022-08-06T12:16:25.000000Z&quot;
+                }
+            ]
+        },
+        &quot;permissions&quot;: [
+            &quot;access_all&quot;
+        ]
+    },
+    &quot;error&quot;: {},
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {},
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;Error code&quot;,
+        &quot;message&quot;: &quot;Error Message.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: {
+        &quot;code&quot;: 401,
+        &quot;message&quot;: &quot;Unaothorized access! User does not have access.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETv1-users--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETv1-users--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETv1-users--id-"></code></pre>
+</span>
+<span id="execution-error-GETv1-users--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETv1-users--id-"></code></pre>
+</span>
+<form id="form-GETv1-users--id-" data-method="GET"
+      data-path="v1/users/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETv1-users--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETv1-users--id-"
+                    onclick="tryItOut('GETv1-users--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETv1-users--id-"
+                    onclick="cancelTryOut('GETv1-users--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETv1-users--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>v1/users/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETv1-users--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETv1-users--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETv1-users--id-"
+               value="laudantium"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>user_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="user_id"
+               data-endpoint="GETv1-users--id-"
+               value="et"
+               data-component="url" hidden>
+    <br>
+<p>Integer</p>
+            </p>
+                    </form>
+
+            <h2 id="users-management-POSTv1-users">Create Users
+This api create new user.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTv1-users">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/v1/users" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"first_name\": \"quidem\",
+    \"last_name\": \"error\",
+    \"email\": \"qui\",
+    \"password\": \"porro\",
+    \"password_confirmation\": \"qui\",
+    \"status\": \"dolores\",
+    \"roles\": [
+        \"facilis\"
+    ],
+    \"permissions\": [
+        \"sequi\"
+    ],
+    \"avatar\": \"rerum\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/users"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "first_name": "quidem",
+    "last_name": "error",
+    "email": "qui",
+    "password": "porro",
+    "password_confirmation": "qui",
+    "status": "dolores",
+    "roles": [
+        "facilis"
+    ],
+    "permissions": [
+        "sequi"
+    ],
+    "avatar": "rerum"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTv1-users">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;user&quot;: {
+            &quot;id&quot;: 2,
+            &quot;first_name&quot;: &quot;usman&quot;,
+            &quot;last_name&quot;: &quot;khan&quot;,
+            &quot;email&quot;: &quot;faizanahmedraza35@gmail.com&quot;,
+            &quot;last_logged_in&quot;: null,
+            &quot;image&quot;: null,
+            &quot;status&quot;: &quot;active&quot;,
+            &quot;roles&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;Manager&quot;,
+                    &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;,
+                    &quot;permissions&quot;: [
+                        {
+                            &quot;id&quot;: 14,
+                            &quot;name&quot;: &quot;leads_all&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 15,
+                            &quot;name&quot;: &quot;leads_read&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 16,
+                            &quot;name&quot;: &quot;leads_create&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 17,
+                            &quot;name&quot;: &quot;leads_update&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 18,
+                            &quot;name&quot;: &quot;leads_delete&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 19,
+                            &quot;name&quot;: &quot;leads_toggle_status&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 20,
+                            &quot;name&quot;: &quot;leads_assign&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 21,
+                            &quot;name&quot;: &quot;leads_comments&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        }
+                    ]
+                }
+            ],
+            &quot;permissions&quot;: [],
+            &quot;leads&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;mehmood&quot;,
+                    &quot;description&quot;: &quot;khan decription&quot;,
+                    &quot;email&quot;: &quot;clientabc@gmail.com&quot;,
+                    &quot;phone&quot;: &quot;+923325674517       &quot;,
+                    &quot;address&quot;: &quot;clientabc@gmail.com&quot;,
+                    &quot;status&quot;: &quot;active&quot;,
+                    &quot;created_at&quot;: &quot;2022-08-06T12:16:25.000000Z&quot;
+                }
+            ]
+        },
+        &quot;permissions&quot;: [
+            &quot;access_all&quot;
+        ]
+    },
+    &quot;error&quot;: {},
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {},
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;Error code&quot;,
+        &quot;message&quot;: &quot;Error Message.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: {
+        &quot;code&quot;: 401,
+        &quot;message&quot;: &quot;Unaothorized access! User does not have access.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTv1-users" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTv1-users"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTv1-users"></code></pre>
+</span>
+<span id="execution-error-POSTv1-users" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTv1-users"></code></pre>
+</span>
+<form id="form-POSTv1-users" data-method="POST"
+      data-path="v1/users"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTv1-users', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTv1-users"
+                    onclick="tryItOut('POSTv1-users');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTv1-users"
+                    onclick="cancelTryOut('POSTv1-users');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTv1-users" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>v1/users</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTv1-users" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTv1-users"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>first_name</code></b>&nbsp;&nbsp;<small>String</small>  &nbsp;
+                <input type="text"
+               name="first_name"
+               data-endpoint="POSTv1-users"
+               value="quidem"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>last_name</code></b>&nbsp;&nbsp;<small>String</small>  &nbsp;
+                <input type="text"
+               name="last_name"
+               data-endpoint="POSTv1-users"
+               value="error"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>email</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTv1-users"
+               value="qui"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>String</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTv1-users"
+               value="porro"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>String</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="password_confirmation"
+               data-endpoint="POSTv1-users"
+               value="qui"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>status</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="status"
+               data-endpoint="POSTv1-users"
+               value="dolores"
+               data-component="body" hidden>
+    <br>
+<p>ex: pending,active,blocked</p>
+        </p>
+                <p>
+            <b><code>roles</code></b>&nbsp;&nbsp;<small>string[]</small>  &nbsp;
+                <input type="text"
+               name="roles[0]"
+               data-endpoint="POSTv1-users"
+               data-component="body" hidden>
+        <input type="text"
+               name="roles[1]"
+               data-endpoint="POSTv1-users"
+               data-component="body" hidden>
+    <br>
+<p>ex: [1,2,3]</p>
+        </p>
+                <p>
+            <b><code>permissions</code></b>&nbsp;&nbsp;<small>string[]</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="permissions[0]"
+               data-endpoint="POSTv1-users"
+               data-component="body" hidden>
+        <input type="text"
+               name="permissions[1]"
+               data-endpoint="POSTv1-users"
+               data-component="body" hidden>
+    <br>
+<p>ex: [1,2,3]</p>
+        </p>
+                <p>
+            <b><code>avatar</code></b>&nbsp;&nbsp;<small>String</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="avatar"
+               data-endpoint="POSTv1-users"
+               value="rerum"
+               data-component="body" hidden>
+    <br>
+<p>ex: base64image</p>
+        </p>
+        </form>
+
+            <h2 id="users-management-PUTv1-users--id-">Update User Details.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This api update user details</p>
+
+<span id="example-requests-PUTv1-users--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/v1/users/pariatur" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"first_name\": \"reprehenderit\",
+    \"last_name\": \"veritatis\",
+    \"status\": \"aut\",
+    \"roles\": [
+        \"vel\"
+    ],
+    \"permissions\": [
+        \"quibusdam\"
+    ],
+    \"avatar\": \"maiores\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/v1/users/pariatur"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "first_name": "reprehenderit",
+    "last_name": "veritatis",
+    "status": "aut",
+    "roles": [
+        "vel"
+    ],
+    "permissions": [
+        "quibusdam"
+    ],
+    "avatar": "maiores"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTv1-users--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;user&quot;: {
+            &quot;id&quot;: 2,
+            &quot;first_name&quot;: &quot;usman&quot;,
+            &quot;last_name&quot;: &quot;khan&quot;,
+            &quot;email&quot;: &quot;faizanahmedraza35@gmail.com&quot;,
+            &quot;last_logged_in&quot;: null,
+            &quot;image&quot;: null,
+            &quot;status&quot;: &quot;active&quot;,
+            &quot;roles&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;Manager&quot;,
+                    &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;,
+                    &quot;permissions&quot;: [
+                        {
+                            &quot;id&quot;: 14,
+                            &quot;name&quot;: &quot;leads_all&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 15,
+                            &quot;name&quot;: &quot;leads_read&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 16,
+                            &quot;name&quot;: &quot;leads_create&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 17,
+                            &quot;name&quot;: &quot;leads_update&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 18,
+                            &quot;name&quot;: &quot;leads_delete&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 19,
+                            &quot;name&quot;: &quot;leads_toggle_status&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 20,
+                            &quot;name&quot;: &quot;leads_assign&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        },
+                        {
+                            &quot;id&quot;: 21,
+                            &quot;name&quot;: &quot;leads_comments&quot;,
+                            &quot;created_at&quot;: &quot;2022-08-06T12:15:18.000000Z&quot;
+                        }
+                    ]
+                }
+            ],
+            &quot;permissions&quot;: [],
+            &quot;leads&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;mehmood&quot;,
+                    &quot;description&quot;: &quot;khan decription&quot;,
+                    &quot;email&quot;: &quot;clientabc@gmail.com&quot;,
+                    &quot;phone&quot;: &quot;+923325674517       &quot;,
+                    &quot;address&quot;: &quot;clientabc@gmail.com&quot;,
+                    &quot;status&quot;: &quot;active&quot;,
+                    &quot;created_at&quot;: &quot;2022-08-06T12:16:25.000000Z&quot;
+                }
+            ]
+        },
+        &quot;permissions&quot;: [
+            &quot;access_all&quot;
+        ]
+    },
+    &quot;error&quot;: {},
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Operation successful&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {},
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;Error code&quot;,
+        &quot;message&quot;: &quot;Error Message.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [],
+    &quot;error&quot;: {
+        &quot;code&quot;: 401,
+        &quot;message&quot;: &quot;Unaothorized access! User does not have access.&quot;
+    },
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Operation failed&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTv1-users--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTv1-users--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTv1-users--id-"></code></pre>
+</span>
+<span id="execution-error-PUTv1-users--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTv1-users--id-"></code></pre>
+</span>
+<form id="form-PUTv1-users--id-" data-method="PUT"
+      data-path="v1/users/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTv1-users--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTv1-users--id-"
+                    onclick="tryItOut('PUTv1-users--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTv1-users--id-"
+                    onclick="cancelTryOut('PUTv1-users--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTv1-users--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>v1/users/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTv1-users--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTv1-users--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="PUTv1-users--id-"
+               value="pariatur"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    <p>
+                <b><code>user_id</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="user_id"
+               data-endpoint="PUTv1-users--id-"
+               value="sed"
+               data-component="url" hidden>
+    <br>
+<p>Integer required</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>first_name</code></b>&nbsp;&nbsp;<small>String</small>  &nbsp;
+                <input type="text"
+               name="first_name"
+               data-endpoint="PUTv1-users--id-"
+               value="reprehenderit"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>last_name</code></b>&nbsp;&nbsp;<small>String</small>  &nbsp;
+                <input type="text"
+               name="last_name"
+               data-endpoint="PUTv1-users--id-"
+               value="veritatis"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>status</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="status"
+               data-endpoint="PUTv1-users--id-"
+               value="aut"
+               data-component="body" hidden>
+    <br>
+<p>ex: pending,active,blocked</p>
+        </p>
+                <p>
+            <b><code>roles</code></b>&nbsp;&nbsp;<small>string[]</small>  &nbsp;
+                <input type="text"
+               name="roles[0]"
+               data-endpoint="PUTv1-users--id-"
+               data-component="body" hidden>
+        <input type="text"
+               name="roles[1]"
+               data-endpoint="PUTv1-users--id-"
+               data-component="body" hidden>
+    <br>
+<p>ex: [1,2,3]</p>
+        </p>
+                <p>
+            <b><code>permissions</code></b>&nbsp;&nbsp;<small>string[]</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="permissions[0]"
+               data-endpoint="PUTv1-users--id-"
+               data-component="body" hidden>
+        <input type="text"
+               name="permissions[1]"
+               data-endpoint="PUTv1-users--id-"
+               data-component="body" hidden>
+    <br>
+<p>ex: [1,2,3]</p>
+        </p>
+                <p>
+            <b><code>avatar</code></b>&nbsp;&nbsp;<small>String</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="avatar"
+               data-endpoint="PUTv1-users--id-"
+               value="maiores"
+               data-component="body" hidden>
+    <br>
+<p>ex: base64image</p>
+        </p>
+        </form>
+
+    
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+name: 'Roles Management'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: v1/roles
+    metadata:
+      title: |-
+        Roles List
+        This api return the collection of all Roles created.
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'String required Example: Bearer TOKEN'
+    urlParameters:
+      order_by:
+        name: order_by
+        description: 'ex: asc/desc'
+        required: false
+        example: voluptas
+        type: string
+        custom: []
+      from_date:
+        name: from_date
+        description: ''
+        required: false
+        example: Y-m-d
+        type: string
+        custom: []
+      to_date:
+        name: to_date
+        description: ''
+        required: false
+        example: Y-m-d
+        type: string
+        custom: []
+      pagination:
+        name: pagination
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        custom: []
+      page_limit:
+        name: page_limit
+        description: ''
+        required: false
+        example: 4
+        type: integer
+        custom: []
+      page:
+        name: page
+        description: ''
+        required: false
+        example: 12
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": {\r\n        \"roles\": [\r\n            {\r\n                \"id\": 3,\r\n                \"name\": \"SalesPerson\",\r\n                \"created_at\": \"2022-08-06T12:15:18.000000Z\",\r\n                \"permissions\": [\r\n                    {\r\n                        \"id\": 14,\r\n                        \"name\": \"leads_all\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    },\r\n                    {\r\n                        \"id\": 15,\r\n                        \"name\": \"leads_read\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    },\r\n                    {\r\n                        \"id\": 21,\r\n                        \"name\": \"leads_comments\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    }\r\n                ]\r\n            },\r\n            {\r\n                \"id\": 2,\r\n                \"name\": \"Manager\",\r\n                \"created_at\": \"2022-08-06T12:15:18.000000Z\",\r\n                \"permissions\": [\r\n                    {\r\n                        \"id\": 14,\r\n                        \"name\": \"leads_all\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    },\r\n                    {\r\n                        \"id\": 15,\r\n                        \"name\": \"leads_read\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    },\r\n                    {\r\n                        \"id\": 16,\r\n                        \"name\": \"leads_create\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    },\r\n                    {\r\n                        \"id\": 17,\r\n                        \"name\": \"leads_update\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    },\r\n                    {\r\n                        \"id\": 18,\r\n                        \"name\": \"leads_delete\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    },\r\n                    {\r\n                        \"id\": 19,\r\n                        \"name\": \"leads_toggle_status\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    },\r\n                    {\r\n                        \"id\": 20,\r\n                        \"name\": \"leads_assign\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    },\r\n                    {\r\n                        \"id\": 21,\r\n                        \"name\": \"leads_comments\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    }\r\n                ]\r\n            },\r\n            {\r\n                \"id\": 1,\r\n                \"name\": \"Admin\",\r\n                \"created_at\": \"2022-08-06T12:15:18.000000Z\",\r\n                \"permissions\": [\r\n                    {\r\n                        \"id\": 1,\r\n                        \"name\": \"access_all\",\r\n                        \"created_at\": \"2022-08-06T12:15:18.000000Z\"\r\n                    }\r\n                ]\r\n            }\r\n        ],\r\n        \"pagination\": {\r\n            \"total\": 3,\r\n            \"count\": 3,\r\n            \"per_page\": 20,\r\n            \"current_page\": 1,\r\n            \"total_pages\": 1\r\n        },\r\n        \"permissions\": [\r\n            \"access_all\"\r\n        ]\r\n    },\r\n    \"error\": {},\r\n    \"success\": true,\r\n    \"message\": \"Operation successful\"\r\n}"
+        headers: []
+        description: '200'
+    responseFields: []

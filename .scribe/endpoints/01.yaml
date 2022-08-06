@@ -1,0 +1,480 @@
+name: 'Leads Management'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - DELETE
+    uri: 'v1/leads/{id}'
+    metadata:
+      title: 'Delete Lead'
+      description: 'This api delete lead'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+      lead_id:
+        name: lead_id
+        description: Integer
+        required: true
+        example: est
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": [],\r\n    \"error\": null,\r\n    \"success\": true,\r\n    \"message\": \"Operation successful\"\r\n}\r\n"
+        headers: []
+        description: '200'
+      -
+        status: 401
+        content: "{\r\n    \"data\": [],\r\n    \"error\": {\r\n        \"code\": 401,\r\n        \"message\": \"Unaothorized access! User does not have access.\"\r\n    },\r\n    \"success\": false,\r\n    \"message\": \"Operation failed\"\r\n}"
+        headers: []
+        description: '401'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'v1/leads/status/{id}'
+    metadata:
+      title: |-
+        Toggle Lead Status
+        This api update the leads status to active or completed
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: ''
+        required: true
+        example: corporis
+        type: string
+        custom: []
+      lead_id:
+        name: lead_id
+        description: ''
+        required: true
+        example: 9
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": [],\r\n    \"error\": null,\r\n    \"success\": true,\r\n    \"message\": \"Operation successful\"\r\n}\r\n"
+        headers: []
+        description: '200'
+      -
+        status: 401
+        content: "{\r\n    \"data\": [],\r\n    \"error\": {\r\n        \"code\": 401,\r\n        \"message\": \"Unaothorized access! User does not have access.\"\r\n    },\r\n    \"success\": false,\r\n    \"message\": \"Operation failed\"\r\n}"
+        headers: []
+        description: '401'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: v1/leads/assign
+    metadata:
+      title: |-
+        Assign Leads to User
+        This api update the leads status to active or deactive
+        other then customers.
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      leads:
+        name: leads
+        description: 'integer required'
+        required: false
+        example:
+          - enim
+        type: 'string[]'
+        custom: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": [],\r\n    \"error\": null,\r\n    \"success\": true,\r\n    \"message\": \"Operation successful\"\r\n}\r\n"
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: v1/leads/comments
+    metadata:
+      title: |-
+        Store Comments
+        This api for comments on leads
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      lead_id:
+        name: lead_id
+        description: ''
+        required: true
+        example: soluta
+        type: Integer
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: asperiores
+        type: String
+        custom: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": [],\r\n    \"error\": null,\r\n    \"success\": true,\r\n    \"message\": \"Operation successful\"\r\n}\r\n"
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'v1/leads/comments/{id}'
+    metadata:
+      title: |-
+        Get Lead Comments
+        This api for comments on leads
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: ''
+        required: true
+        example: nihil
+        type: string
+        custom: []
+      lead_id:
+        name: lead_id
+        description: ''
+        required: true
+        example: 10
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": [],\r\n    \"error\": null,\r\n    \"success\": true,\r\n    \"message\": \"Operation successful\"\r\n}\r\n"
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'v1/leads/{id}'
+    metadata:
+      title: 'Update Lead Details.'
+      description: 'This api update lead details'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: ''
+        required: true
+        example: expedita
+        type: string
+        custom: []
+      lead_id:
+        name: lead_id
+        description: 'Integer required'
+        required: false
+        example: excepturi
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: sunt
+        type: String
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: false
+        example: qui
+        type: String
+        custom: []
+      phone:
+        name: phone
+        description: ''
+        required: false
+        example: ullam
+        type: email
+        custom: []
+      email:
+        name: email
+        description: ''
+        required: false
+        example: adipisci
+        type: String
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: false
+        example: qui
+        type: String
+        custom: []
+      status:
+        name: status
+        description: 'ex: pending,active,completed'
+        required: true
+        example: sint
+        type: String
+        custom: []
+    responses:
+      -
+        status: 422
+        content: "{\r\n    \"data\": {},\r\n    \"error\": {\r\n        \"code\": \"Error code\",\r\n        \"message\": \"Error Message.\"\r\n    },\r\n    \"success\": false,\r\n    \"message\": \"Operation failed\"\r\n}\r\n"
+        headers: []
+        description: '422'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: v1/leads
+    metadata:
+      title: |-
+        Get Leads
+        This will return leads list.
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      leads:
+        name: leads
+        description: '1,2,3,4'
+        required: false
+        example: optio
+        type: string
+        custom: []
+      name:
+        name: name
+        description: 'ex: abc'
+        required: false
+        example: est
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'ex: pending,active,completed'
+        required: false
+        example: quia
+        type: string
+        custom: []
+      order_by:
+        name: order_by
+        description: 'ex: asc/desc'
+        required: false
+        example: est
+        type: string
+        custom: []
+      from_date:
+        name: from_date
+        description: ''
+        required: false
+        example: Y-m-d
+        type: string
+        custom: []
+      to_date:
+        name: to_date
+        description: ''
+        required: false
+        example: Y-m-d
+        type: string
+        custom: []
+      pagination:
+        name: pagination
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        custom: []
+      page_limit:
+        name: page_limit
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        custom: []
+      page:
+        name: page
+        description: ''
+        required: false
+        example: 11
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": {\r\n        \"leads\": [\r\n            {\r\n                \"id\": 1,\r\n                \"name\": \"mehmood\",\r\n                \"description\": \"khan decription\",\r\n                \"email\": \"clientabc@gmail.com\",\r\n                \"phone\": \"+923325674517       \",\r\n                \"address\": \"clientabc@gmail.com\",\r\n                \"status\": \"active\",\r\n                \"created_at\": \"2022-08-06T12:16:25.000000Z\",\r\n                \"assigned_users_count\": 1\r\n            }\r\n        ],\r\n        \"pagination\": {\r\n            \"total\": 1,\r\n            \"count\": 1,\r\n            \"per_page\": 20,\r\n            \"current_page\": 1,\r\n            \"total_pages\": 1\r\n        },\r\n        \"permissions\": [\r\n            \"access_all\"\r\n        ]\r\n    },\r\n    \"error\": {},\r\n    \"success\": true,\r\n    \"message\": \"Operation successful\"\r\n}"
+        headers: []
+        description: '200'
+      -
+        status: 422
+        content: "{\r\n    \"data\": {},\r\n    \"error\": {\r\n        \"code\": \"Error code\",\r\n        \"message\": \"Error Message.\"\r\n    },\r\n    \"success\": false,\r\n    \"message\": \"Operation failed\"\r\n}\r\n"
+        headers: []
+        description: '422'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'v1/leads/{id}'
+    metadata:
+      title: |-
+        Show Lead Details
+        This api show the lead details.
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: ''
+        required: true
+        example: sed
+        type: string
+        custom: []
+      lead_id:
+        name: lead_id
+        description: Integer
+        required: true
+        example: qui
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": {\r\n        \"lead\": {\r\n            \"id\": 1,\r\n            \"name\": \"mehmood\",\r\n            \"description\": \"khan decription\",\r\n            \"email\": \"clientabc@gmail.com\",\r\n            \"phone\": \"+923325674517       \",\r\n            \"address\": \"clientabc@gmail.com\",\r\n            \"status\": \"active\",\r\n            \"created_at\": \"2022-08-06T12:16:25.000000Z\",\r\n            \"users\": [\r\n                {\r\n                    \"id\": 2,\r\n                    \"first_name\": \"usman\",\r\n                    \"last_name\": \"khan\",\r\n                    \"email\": \"faizanahmedraza35@gmail.com\",\r\n                    \"last_logged_in\": null,\r\n                    \"image\": null,\r\n                    \"status\": \"active\"\r\n                }\r\n            ],\r\n            \"comments\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"description\": \"my decription\",\r\n                    \"created_at\": \"2022-08-06T12:17:14.000000Z\"\r\n                }\r\n            ]\r\n        },\r\n        \"permissions\": [\r\n            \"access_all\"\r\n        ]\r\n    },\r\n    \"error\": {},\r\n    \"success\": true,\r\n    \"message\": \"Operation successful\"\r\n}"
+        headers: []
+        description: '200'
+      -
+        status: 422
+        content: "{\r\n    \"data\": {},\r\n    \"error\": {\r\n        \"code\": \"Error code\",\r\n        \"message\": \"Error Message.\"\r\n    },\r\n    \"success\": false,\r\n    \"message\": \"Operation failed\"\r\n}\r\n"
+        headers: []
+        description: '422'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: v1/leads
+    metadata:
+      title: |-
+        Create Leads
+        This api create new lead.
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: id
+        type: String
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: false
+        example: quibusdam
+        type: String
+        custom: []
+      phone:
+        name: phone
+        description: ''
+        required: false
+        example: qui
+        type: email
+        custom: []
+      email:
+        name: email
+        description: ''
+        required: false
+        example: dolorum
+        type: String
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: false
+        example: et
+        type: String
+        custom: []
+      status:
+        name: status
+        description: 'ex: pending,active,completed'
+        required: false
+        example: consequuntur
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": {\r\n        \"lead\": {\r\n            \"id\": 1,\r\n            \"name\": \"mehmood\",\r\n            \"description\": \"khan decription\",\r\n            \"email\": \"clientabc@gmail.com\",\r\n            \"phone\": \"+923325674517       \",\r\n            \"address\": \"clientabc@gmail.com\",\r\n            \"status\": \"active\",\r\n            \"created_at\": \"2022-08-06T12:16:25.000000Z\",\r\n            \"users\": [\r\n                {\r\n                    \"id\": 2,\r\n                    \"first_name\": \"usman\",\r\n                    \"last_name\": \"khan\",\r\n                    \"email\": \"faizanahmedraza35@gmail.com\",\r\n                    \"last_logged_in\": null,\r\n                    \"image\": null,\r\n                    \"status\": \"active\"\r\n                }\r\n            ],\r\n            \"comments\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"description\": \"my decription\",\r\n                    \"created_at\": \"2022-08-06T12:17:14.000000Z\"\r\n                }\r\n            ]\r\n        },\r\n        \"permissions\": [\r\n            \"access_all\"\r\n        ]\r\n    },\r\n    \"error\": {},\r\n    \"success\": true,\r\n    \"message\": \"Operation successful\"\r\n}"
+        headers: []
+        description: '200'
+      -
+        status: 422
+        content: "{\r\n    \"data\": {},\r\n    \"error\": {\r\n        \"code\": \"Error code\",\r\n        \"message\": \"Error Message.\"\r\n    },\r\n    \"success\": false,\r\n    \"message\": \"Operation failed\"\r\n}\r\n"
+        headers: []
+        description: '422'
+    responseFields: []

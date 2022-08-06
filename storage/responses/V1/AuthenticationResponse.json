@@ -1,0 +1,36 @@
+{
+    "data": {
+        "authentication": {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzUyMjViZDVjYzU2Njk5Y2QxOTg5Y2JlOTJlOGQ0MjdiNmU3YTExNzk1NDRjYmU3ZjI3NmY1NzYyOWI0Mzc1ZjdhMmNjNDA1YmQxMWZjZjAiLCJpYXQiOjE2NTk3OTAzNDkuODAwNDQ2LCJuYmYiOjE2NTk3OTAzNDkuODAwNDUsImV4cCI6MTY5MTMyNjM0OS43ODExNjQsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.ASFjs9O5GuPS3KU8UCybiUe2NpfOBvXKXmMV0zk1QS1qAD_GPl6TUKpmpors_nW8WOZsMIJ7xUNctmcyqS71AqgOvcKxEOWAc2djHaaTD8l9SBhidm4cIwuZM6aEN1iDVL8VGxkcBhG6kJyj1_MHbuQPcnRRfEqhqSzp0PPSIRIpfTfiApvax9QUooCg9H3cXk3h3qRxZu3aqP7A5_STakqcv4lIeqeBaMToOgXCvVZGc_gG8K5bqAUgOi5l3oVc7R56-b6ebIKgUzln4Q1VagdH4xPedGlm0_GVrBVKBnMbgAmVQOBQo8ohiidvOu6Q3JRmMGuna92gzlBLL5Kk_e-fI4mlWnhVWoz2-U8KJjvSGDFPYHlgBvqBYAZbWxZsRbKShecRcxqt89tRFy8XwKwP2UBvp-CDsof3j-FpJKa0Uhf9fc5u8R0o1D1LAmUJKUE1dyr3Unta6gkAvJW8Wnk_jPnIYn7hezmglGwn45NNagJNJZk8s0ftk7Lr2CT8H4CszYs--I_2YOtSykvGw1tr3f4-n55KaEXUNMukybmALLuPxvFu7av5eheNYnvwKa6-x7Xx6-qtWA0ZpOFsVfEA5OHUMN0tknY6wOqMfEwJ9F-on3xomCIE8l9TQHL5VWeKD8HNvGUWS9xN-6UQ379Xg7OLIAtiTAZ9Bb44Izo",
+            "token_type": "Bearer",
+            "expiry": "2022-08-16 12:52:29",
+            "user": {
+                "id": 1,
+                "first_name": "Faizan Ahmed",
+                "last_name": "Raza",
+                "email": "faizan.raza@saasfa.com",
+                "last_logged_in": "2022-08-06T12:52:29.816544Z",
+                "image": null,
+                "status": "active",
+                "roles": [
+                    {
+                        "id": 1,
+                        "name": "Admin",
+                        "created_at": "2022-08-06T12:15:18.000000Z",
+                        "permissions": [
+                            {
+                                "id": 1,
+                                "name": "access_all",
+                                "created_at": "2022-08-06T12:15:18.000000Z"
+                            }
+                        ]
+                    }
+                ],
+                "permissions": []
+            }
+        }
+    },
+    "error": {},
+    "success": true,
+    "message": "Operation successful"
+}

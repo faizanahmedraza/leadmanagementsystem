@@ -1,0 +1,39 @@
+{
+    "data": {
+        "users": [
+            {
+                "id": 2,
+                "first_name": "usman",
+                "last_name": "khan",
+                "email": "faizanahmedraza35@gmail.com",
+                "last_logged_in": null,
+                "image": null,
+                "status": "active",
+                "leads_assign_count": 1
+            },
+            {
+                "id": 1,
+                "first_name": "Faizan Ahmed",
+                "last_name": "Raza",
+                "email": "faizan.raza@saasfa.com",
+                "last_logged_in": "2022-08-06 12:52:29",
+                "image": null,
+                "status": "active",
+                "leads_assign_count": 0
+            }
+        ],
+        "pagination": {
+            "total": 2,
+            "count": 2,
+            "per_page": 20,
+            "current_page": 1,
+            "total_pages": 1
+        },
+        "permissions": [
+            "access_all"
+        ]
+    },
+    "error": {},
+    "success": true,
+    "message": "Operation successful"
+}

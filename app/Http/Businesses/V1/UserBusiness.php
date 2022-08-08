@@ -9,6 +9,7 @@ use App\Http\Services\V1\PermissionService;
 use App\Http\Services\V1\RoleService;
 use App\Http\Services\V1\UserService;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Lumen\Http\Request;
 
@@ -45,7 +46,12 @@ class UserBusiness
         if ($request->has('avatar') && !empty($request->avatar) && !validate_base64($request->avatar, ['png', 'jpg', 'jpeg'])) {
             throw RequestValidationException::errorMessage('Invalid image. Base64 image string is required. Allowed formats are png,jpg,jpeg.');
         }
-        $user = UserService::first($id);
+
+        $user = self::first($id);
+
+        if ($user->id == Auth::id() && in_array($request->status, ['blocked', 'pending'])) {
+            throw UserException::authUserRestrictStatus();
+        }
 
         // update in users table
         UserService::update($request, $user);
@@ -58,10 +64,10 @@ class UserBusiness
     public static function destroy(int $id)
     {
         // delete user
-        $user = UserService::first($id);
+        $user = self::first($id);
 
         if ($user->id == Auth::id()) {
-            throw UserException::authUserRestrictStatus();
+            throw UserException::authUserDeleteRestrict();
         }
 
         UserService::destroy($user);
@@ -70,12 +76,18 @@ class UserBusiness
     public static function toggleStatus($id, Request $request)
     {
         // get user
-        $user = UserService::first($id);
+        $user = self::first($id);
 
         if ($user->id == Auth::id()) {
             throw UserException::authUserRestrictStatus();
         }
         // status toggle
         UserService::toggleStatus($user, $request);
+    }
+
+    public static function changePassword($id, Request $request)
+    {
+        $user = self::first($id);
+        UserService::changeUserPassword($user, $request->password);
     }
 }

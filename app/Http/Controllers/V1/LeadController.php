@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\V1\AssignLeadRequest;
 use App\Http\Requests\V1\CommentRequest;
+use App\Http\Requests\V1\CsvFileRequest;
 use App\Http\Requests\V1\ListRequest;
 use App\Http\Requests\V1\LeadRequest;
 use App\Http\Resources\SuccessResponse;
@@ -44,7 +45,7 @@ class LeadController extends Controller
      *
      * @bodyParam  name String required
      * @bodyParam  description String
-     * @bodyParam  phone email
+     * @bodyParam  phone String
      * @bodyParam  email String
      * @bodyParam  address String
      * @bodyParam  status string ex: pending,active,completed
@@ -130,7 +131,7 @@ class LeadController extends Controller
      *
      * This api delete lead
      *
-     * @urlParam  lead_id required Integer
+     * @urlParam  lead_id Integer required
      *
      * @responseFile 200 responses/SuccessResponse.json
      * @responseFile 401 responses/UnAuthorizedResponse.json
@@ -160,10 +161,10 @@ class LeadController extends Controller
 
     /**
      * Assign Leads to User
-     * This api update the leads status to active or deactive
-     * other then customers.
+     * This api for assign leads to user
      *
-     * @bodyParam leads array integer required
+     * @bodyParam user_id Integer required
+     * @bodyParam leads array required ex:[1,2]
      *
      * @responseFile 200 responses/SuccessResponse.json
      */
@@ -201,5 +202,23 @@ class LeadController extends Controller
     {
         $comments = LeadBusiness::getComments($id);
         return (new LeadCommentResponse($comments));
+    }
+
+    /**
+     * Import Csv Leads File
+     *
+     * File values sequences should like below and First row will be considered as header.
+     * Name,Description,Phone,Email,Address,Status
+     *
+     * Status for e.g. active or completed pr pending
+     *
+     * @bodyParam csv_file File required
+     *
+     * @responseFile 200 responses/SuccessResponse.json
+     */
+    public function uploadCsv(CsvFileRequest $request)
+    {
+        LeadBusiness::uploadCsv($request);
+        return new SuccessResponse([]);
     }
 }

@@ -221,6 +221,16 @@ class UserService
         }
     }
 
+    public static function changeUserPassword(User $user, $password)
+    {
+        $user->password = Hash::make($password);
+        $user->save();
+
+        if (!$user) {
+            throw FailureException::serverError();
+        }
+    }
+
     public static function validateToken($token)
     {
         if ($token->expires_at < TimeStampHelper::now()) {

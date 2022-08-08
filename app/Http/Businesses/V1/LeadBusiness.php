@@ -69,4 +69,9 @@ class LeadBusiness
     {
         return LeadService::getComments($id);
     }
+
+    public static function uploadCsv(Request $request)
+    {
+        LeadService::uploadCsv($request);
+    }
 }

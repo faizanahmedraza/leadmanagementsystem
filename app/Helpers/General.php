@@ -1,7 +1,5 @@
 <?php
 
-use App\Helpers\TimeStampHelper;
-
 if (!function_exists('asset')) {
     /**
      * Generate an asset path for the application.
@@ -26,6 +24,19 @@ if (!function_exists('clean')) {
         }
 
         return $value;
+    }
+}
+
+if (!function_exists('public_path')) {
+    /**
+     * Get the path to the public folder.
+     *
+     * @param  string $path
+     * @return string
+     */
+    function public_path($path = '')
+    {
+        return env('PUBLIC_PATH', base_path('public')) . ($path ? '/' . $path : $path);
     }
 }
 
@@ -64,47 +75,6 @@ if (!function_exists('validate_base64')) {
         }
 
         return true;
-    }
-}
-
-if (!function_exists('GetDomainFromUrl')) {
-    function GetDomainFromUrl($domain)
-    {
-        $parseDomain = parse_url(trim(strtolower($domain)));
-        if (isset($parseDomain['host'])) {
-            return $parseDomain['host'];
-        }
-        return $parseDomain['path'];
-    }
-}
-
-if (!function_exists('recurringInvoiceDate')) {
-    function recurringInvoiceDate($recurringType, $incStartDate = null)
-    {
-        if (is_null($incStartDate)) {
-            $incStartDate = date('Y-m-d');
-        }
-        switch ($recurringType) {
-            case CustomerServiceRequest::RECURRING_TYPE[0]:
-                //weekly
-                return TimeStampHelper::incrementInDate($incStartDate, ' +1 week') . " 00:00:00";
-                break;
-            case CustomerServiceRequest::RECURRING_TYPE[1]:
-                //monthly
-                return TimeStampHelper::incrementInDate($incStartDate, ' +1 month') . " 00:00:00";
-                break;
-            case CustomerServiceRequest::RECURRING_TYPE[2]:
-                //quarterly
-                return TimeStampHelper::incrementInDate($incStartDate, ' +3 months') . " 00:00:00";
-                break;
-            case CustomerServiceRequest::RECURRING_TYPE[3]:
-                //biannually
-                return TimeStampHelper::incrementInDate($incStartDate, ' +6 months') . " 00:00:00";
-                break;
-            default:
-                //annually
-                return TimeStampHelper::incrementInDate($incStartDate, ' +1 year') . " 00:00:00";
-        }
     }
 }
 

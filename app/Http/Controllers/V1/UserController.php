@@ -5,6 +5,7 @@ namespace App\Http\Controllers\V1;
 use App\Http\Businesses\V1\UserBusiness;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\V1\ChangeUserPasswordRequest;
 use App\Http\Requests\V1\ListRequest;
 use App\Http\Requests\V1\UserRequest;
 use App\Http\Requests\V1\UserStatusRequest;
@@ -162,6 +163,26 @@ class UserController extends Controller
     public static function toggleStatus(int $id, UserStatusRequest $request)
     {
         UserBusiness::toggleStatus($id, $request);
+        return new SuccessResponse([]);
+    }
+
+    /**
+     * Change Password
+     * change password request of any user
+     *
+     * @authenticated
+     *
+     * @urlParam user_id Integer required
+     * @bodyParam password String required abcd1234 Example: abcd1234
+     *
+     * @responseFile 200 responses/SuccessResponse.json
+     * @responseFile 422 responses/ValidationResponse.json
+     */
+    public function changePassword(int $id, ChangeUserPasswordRequest $request)
+    {
+        DB::beginTransaction();
+        UserBusiness::changePassword($request, $id);
+        DB::commit();
         return new SuccessResponse([]);
     }
 }

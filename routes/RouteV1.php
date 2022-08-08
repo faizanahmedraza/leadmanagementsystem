@@ -29,6 +29,7 @@ $router->group(['prefix' => 'v1', 'namespace' => 'V1'], function () use ($router
             $router->put('/{id}', 'UserController@update');
             $router->put('/status/{id}', 'UserController@toggleStatus');
             $router->delete('/{id}', 'UserController@destroy');
+            $router->put('/password/{id}', 'UserController@changePassword');
         });
 
         // Roles apis
@@ -54,6 +55,7 @@ $router->group(['prefix' => 'v1', 'namespace' => 'V1'], function () use ($router
             $router->post('/assign', 'LeadController@assignLeads');
             $router->post('/comments', 'LeadController@comments');
             $router->get('/comments/{id}', 'LeadController@getLeadComments');
+            $router->post('/import', 'LeadController@uploadCsv');
         });
     });
 });

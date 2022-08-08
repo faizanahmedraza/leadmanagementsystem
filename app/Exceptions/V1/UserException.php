@@ -67,7 +67,15 @@ class UserException extends BaseException
     public static function authUserRestrictStatus(): self
     {
         return new self(
-            'Logged in user cannot modifiy its own status',
+            'Logged in user cannot modify its own status.',
+            '401'
+        );
+    }
+
+    public static function authUserDeleteRestrict(): self
+    {
+        return new self(
+            'Logged in user cannot delete their self.',
             '401'
         );
     }

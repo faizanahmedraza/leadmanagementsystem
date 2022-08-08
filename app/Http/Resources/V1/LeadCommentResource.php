@@ -19,6 +19,7 @@ class LeadCommentResource extends Resource
             'id' => $this->id,
             'description' => unserialize($this->description) ?? '',
             'created_at' => $this->created_at ?? '',
+            'user' => new UserResource($this->whenLoaded('user'))
         ];
     }
 }
